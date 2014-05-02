@@ -6,6 +6,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
+import Oauth2.Credential;
+import Oauth2.CredentialService;
 import Oauth2.Oauth2Info;
 import Oauth2.Oauth2Service;
 import android.support.v7.app.ActionBarActivity;
@@ -25,7 +27,9 @@ import android.widget.Toast;
 public class MainActivity extends ActionBarActivity {
 	
 	private Oauth2Service _oauth2;
-	private WebView webView;
+	private WebView _webView;
+	private Credential _credential;
+	private CredentialService _credentialService;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +45,7 @@ public class MainActivity extends ActionBarActivity {
 		init();
         
 		String oauth2Url = _oauth2.getAuthorizationUrl();
-		webView.loadUrl(oauth2Url);
+		_webView.loadUrl(oauth2Url);
 	}
 
 	@Override
@@ -84,13 +88,15 @@ public class MainActivity extends ActionBarActivity {
 	private void init() {
 		
 		_oauth2 = new Oauth2Service();
+		_credential = new Credential();
+		_credentialService = new CredentialService();
 		
 		androidUniversalImageLoaderInit();
 		
-		webView = (WebView) findViewById(R.id.webView1);
-		webView.getSettings().setJavaScriptEnabled(true);
+		_webView = (WebView) findViewById(R.id.webView1);
+		_webView.getSettings().setJavaScriptEnabled(true);
 		
-		webView.setWebViewClient(new WebViewClient() {			
+		_webView.setWebViewClient(new WebViewClient() {			
 			public void onPageFinished(WebView view, String url) {
 				super.onPageFinished(view, url);
 				if(url.startsWith(Oauth2Info.REDIRECT_URI)) {
@@ -99,7 +105,8 @@ public class MainActivity extends ActionBarActivity {
 						String code = url.substring(Oauth2Info.REDIRECT_URI.length() + 7, url.length());
 							
 						GoogleTokenResponse accessToken = _oauth2.accessTokenRequest(code);
-						String result = _oauth2.accessProtectedResource(accessToken);
+						_credential.setCredential(_credentialService.makeCredential(accessToken));
+						String result = _oauth2.accessProtectedResource(_credential);
 							
 						Object[] jsonTempObject = new Object[3];
 				       	JsonParser jsonParser = new JsonParser();
@@ -109,7 +116,7 @@ public class MainActivity extends ActionBarActivity {
 					}
 					else if (url.indexOf("error=") != -1) {
 						Toast.makeText(getApplicationContext(), "code error", Toast.LENGTH_LONG).show();
-						webView.setVisibility(View.INVISIBLE);
+						_webView.setVisibility(View.INVISIBLE);
 					}
 				}
 			}

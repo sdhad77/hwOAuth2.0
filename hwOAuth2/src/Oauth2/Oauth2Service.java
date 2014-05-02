@@ -31,12 +31,12 @@ public class Oauth2Service {
 		return accessToken;
 	}
 	
-	public String accessProtectedResource(GoogleTokenResponse accessToken) {
+	public String accessProtectedResource(Credential credential) {
 
 		String str = null;
 		
 		try {
-			str = new AccessProtectedResource().execute(accessToken).get();
+			str = new AccessProtectedResource().execute(credential).get();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

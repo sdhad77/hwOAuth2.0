@@ -34,5 +34,17 @@ public class TasksService{
 	
 	public void addTasksList(Credential credential, TaskList taskList) {
 		
+		AddTasksList tempTaskList= new AddTasksList();
+		tempTaskList.setNewTaskList(taskList);
+		try {
+			tempTaskList.execute(credential).get();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		tempTaskList = null;
 	}
 }

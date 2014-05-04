@@ -15,7 +15,16 @@ public class AddTasksList extends AsyncTask<Credential, Void, Void>{
 
 	private HttpTransport httpTransport;
 	private JacksonFactory jsonFactory;
+	private TaskList newTaskList;
 	
+	public TaskList getNewTaskList() {
+		return newTaskList;
+	}
+
+	public void setNewTaskList(TaskList newTaskList) {
+		this.newTaskList = newTaskList;
+	}
+
 	@Override
 	protected void onPreExecute() {
 		
@@ -28,11 +37,8 @@ public class AddTasksList extends AsyncTask<Credential, Void, Void>{
 		
 		Tasks service = new Tasks.Builder(httpTransport, jsonFactory, credential[0].getCredential()).setApplicationName("MYTask").build();
 		
-		TaskList taskList = new TaskList();
-		taskList.setTitle("New Task List");
-
 		try {
-			service.tasklists().insert(taskList).execute();
+			service.tasklists().insert(newTaskList).execute();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

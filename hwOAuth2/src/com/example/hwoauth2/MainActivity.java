@@ -1,11 +1,13 @@
 package com.example.hwoauth2;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleTokenResponse;
+import com.google.api.services.tasks.model.TaskList;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
+import GoogleAPI.Tasks.TasksService;
 import Oauth2.Credential;
 import Oauth2.CredentialService;
 import Oauth2.Oauth2Info;
@@ -112,7 +114,9 @@ public class MainActivity extends ActionBarActivity {
 				       	JsonParser jsonParser = new JsonParser();
 				       	jsonTempObject = jsonParser.parse(result);
 	
-				       	drawView(jsonTempObject);
+			//	       	showUserInfo(jsonTempObject);
+				       	
+				       	showTask();
 					}
 					else if (url.indexOf("error=") != -1) {
 						Toast.makeText(getApplicationContext(), "code error", Toast.LENGTH_LONG).show();
@@ -136,7 +140,7 @@ public class MainActivity extends ActionBarActivity {
 		ImageLoader.getInstance().init(config);
 	}
    
-	private void drawView(Object[] obj) {
+	private void showUserInfo(Object[] obj) {
 	   
 		WebView webView = (WebView) findViewById(R.id.webView1);
 		webView.setVisibility(View.INVISIBLE);
@@ -149,5 +153,15 @@ public class MainActivity extends ActionBarActivity {
 		TextView textView = (TextView) findViewById(R.id.textView1);
 		textView.setVisibility(View.VISIBLE);
 		textView.setText(obj[0].toString() + "\n" + obj[1].toString());
+	}
+	
+	private void showTask() {
+		
+		TaskList tempTask = new TaskList();
+       	tempTask.setTitle("ADD Test");
+       	TasksService service = new TasksService();
+       	service.showTasksList(service.getTasksList(_credential));
+       	service.addTasksList(_credential, tempTask);
+       	service.showTasksList(service.getTasksList(_credential));
 	}
 }

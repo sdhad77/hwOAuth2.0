@@ -3,8 +3,8 @@ package Oauth2;
 import java.util.Arrays;
 import java.util.List;
 
-public class Oauth2Info {
-	
+public class Oauth2Info
+{
 	final public static String CLIENT_ID = "438691373590-52ct0cdjpic99f80orje850gutg1elg6.apps.googleusercontent.com";
 	final public static String CLIENT_SECRET = "";
 	final public static String API_KEY = "AIzaSyCz-ZbhCQwM5mEJEGWkPI8HhoUwklHoGIc";

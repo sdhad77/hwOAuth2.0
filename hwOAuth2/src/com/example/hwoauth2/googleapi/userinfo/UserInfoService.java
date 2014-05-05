@@ -1,14 +1,12 @@
 package com.example.hwoauth2.googleapi.userinfo;
 
 import com.example.hwoauth2.R;
-import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;

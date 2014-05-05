@@ -50,10 +50,10 @@ public class Oauth2Service
 	public String getAuthorizationUrl()
 	{
 		String str = new GoogleAuthorizationCodeRequestUrl(
-						Oauth2Info.CLIENT_ID, 
-						Oauth2Info.REDIRECT_URI, 
-						Oauth2Info.SCOPE)
-						.build();
+							Oauth2Info.getInstance().getCLIENT_ID(), 
+							Oauth2Info.getInstance().getREDIRECT_URI(), 
+							Oauth2Info.getInstance().getSCOPE())
+							.build();
 		
 		return str;
 	}
@@ -69,7 +69,8 @@ public class Oauth2Service
 		GoogleCredential credential = new GoogleCredential.Builder()
 										.setTransport(new NetHttpTransport())
 										.setJsonFactory(new JacksonFactory())
-										.setClientSecrets(Oauth2Info.CLIENT_ID, Oauth2Info.CLIENT_SECRET)
+										.setClientSecrets(Oauth2Info.getInstance().getCLIENT_ID(), 
+												          Oauth2Info.getInstance().getCLIENT_SECRET())
 										.build();
 
 		credential.setAccessToken(token.getAccessToken());
@@ -120,10 +121,10 @@ public class Oauth2Service
 				response = new GoogleAuthorizationCodeTokenRequest(
 								httpTransport, 
 								jsonFactory, 
-								Oauth2Info.CLIENT_ID, 
-								Oauth2Info.CLIENT_SECRET, 
+								Oauth2Info.getInstance().getCLIENT_ID(), 
+								Oauth2Info.getInstance().getCLIENT_SECRET(), 
 								code[0],
-								Oauth2Info.REDIRECT_URI).execute();
+								Oauth2Info.getInstance().getREDIRECT_URI()).execute();
 			} 
 			catch(IOException e) 
 			{

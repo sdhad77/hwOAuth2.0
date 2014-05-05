@@ -66,6 +66,6 @@ public class UserInfoService extends Activity
 	
 	public String getUserInfo()
 	{
-		return Oauth2Service.getInstance().accessProtectedResource(Oauth2Info.ENDPOINT_URL);
+		return Oauth2Service.getInstance().accessProtectedResource(Oauth2Info.getInstance().getENDPOINT_URL());
 	}
 }

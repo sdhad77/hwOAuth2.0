@@ -13,6 +13,9 @@ public class Oauth2Info
 	private String ENDPOINT_URL;
 	private List<String> SCOPE;
 	
+	public enum Service {NONE, USERINFO, TASKS};
+	private Service selectService = Service.NONE;
+	
 	private String ENDPOINT_UserInfo = "https://www.googleapis.com/oauth2/v3/userinfo";
 	private String ENDPOINT_Tasks    = "https://www.googleapis.com/oauth2/v3/userinfo";
 	
@@ -33,7 +36,8 @@ public class Oauth2Info
 
 		return _instance;
 	}
-	
+
+	public Service getSelectService()       {return selectService;}
 	public String getCLIENT_ID()            {return CLIENT_ID;}
 	public String getCLIENT_SECRET()        {return CLIENT_SECRET;}
 	public String getAPI_KEY()              {return API_KEY;}
@@ -45,6 +49,7 @@ public class Oauth2Info
 	public List<String> getSCOPE_UserInfo() {return SCOPE_UserInfo;}
 	public List<String> getSCOPE_Tasks()    {return SCOPE_Tasks;}
 	
+	public void setSelectService(Service selectService)        {this.selectService = selectService;}
 	public void setENDPOINT_URL(String eNDPOINT_URL)           {ENDPOINT_URL = eNDPOINT_URL;}
 	public void setSCOPE(List<String> sCOPE)                   {SCOPE = sCOPE;}
 	public void setENDPOINT_UserInfo(String eNDPOINT_UserInfo) {ENDPOINT_UserInfo = eNDPOINT_UserInfo;}

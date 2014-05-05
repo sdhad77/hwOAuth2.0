@@ -10,13 +10,18 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
+import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class MainActivity extends Activity
 {
 	private WebView _loginWebView;
+	private int selectService;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -25,11 +30,48 @@ public class MainActivity extends Activity
 		setContentView(R.layout.activity_main);
         
 		init();
-        
-		_loginWebView.loadUrl(Oauth2Service.getInstance().getAuthorizationUrl());
 	}
 	
 	private void init()
+	{
+		initServiceSelectButton();
+		initLoginWebView();
+	}
+	
+	private void initServiceSelectButton()
+	{
+		Button serviceSelectButton = (Button)findViewById(R.id.button1);
+		serviceSelectButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				
+				RadioGroup serviceRadioGroup = (RadioGroup)findViewById(R.id.radioGroup1);
+				
+				switch(serviceRadioGroup.getCheckedRadioButtonId())
+				{
+					case R.id.radioButton1:
+						selectService = 1;
+						break;
+						
+					case R.id.radioButton2:
+						selectService = 2;
+						break;
+						
+					default :
+						Toast.makeText(getApplicationContext(), "존재하지 않는 ID 입니다", Toast.LENGTH_LONG).show();
+						break;
+				}
+				
+				_loginWebView.setVisibility(View.VISIBLE);
+				
+				RelativeLayout relativeLayout = (RelativeLayout)findViewById(R.id.layout1);
+				relativeLayout.setVisibility(View.INVISIBLE);
+			}
+		});
+	}
+	
+	private void initLoginWebView()
 	{
 		_loginWebView = (WebView) findViewById(R.id.webView1);
 		_loginWebView.getSettings().setJavaScriptEnabled(true);
@@ -49,9 +91,13 @@ public class MainActivity extends Activity
 	
 						_loginWebView.setVisibility(View.INVISIBLE);
 						
-				       	showUserInfo();
-				       	
-		//		       	showTask();
+						Intent intent = null;
+						
+						if(selectService == 1) intent = new Intent(getApplicationContext(), UserInfoService.class);
+						else if(selectService == 2) intent = new Intent(getApplicationContext(), TasksService.class);
+						
+						startActivity(intent);
+						finish();
 					}
 					else if (url.indexOf("error=") != -1)
 					{
@@ -61,20 +107,7 @@ public class MainActivity extends Activity
 				}
 			}
 		});
-	}
-   
-	private void showUserInfo()
-	{
-		Intent intent = new Intent(getApplicationContext(), UserInfoService.class);
-		intent.putExtra("jsonStr", UserInfoService.getInstance().getUserInfo());
-		startActivity(intent);
-		finish();
-	}
-	
-	private void showTask()
-	{
-       	Intent intent = new Intent(getApplicationContext(), TasksService.class);
-		startActivity(intent);
-		finish();
+		
+		_loginWebView.loadUrl(Oauth2Service.getInstance().getAuthorizationUrl());
 	}
 }

@@ -1,8 +1,5 @@
 package com.example.hwoauth2;
 
-import com.example.hwoauth2.googleapi.tasks.TasksService;
-import com.example.hwoauth2.googleapi.userinfo.UserInfoService;
-
 import Oauth2.Oauth2Info;
 import Oauth2.Oauth2Service;
 import android.app.Activity;
@@ -19,9 +16,6 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity
 {
-	private WebView _loginWebView;
-	private int selectService;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -50,15 +44,11 @@ public class MainActivity extends Activity
 				switch(serviceRadioGroup.getCheckedRadioButtonId())
 				{
 					case R.id.radioButton1:
-						selectService = 1;
-						Oauth2Info.getInstance().setENDPOINT_URL(Oauth2Info.getInstance().getENDPOINT_UserInfo());
-						Oauth2Info.getInstance().setSCOPE(Oauth2Info.getInstance().getSCOPE_UserInfo());
+						Oauth2Service.getInstance().setSelectService(Oauth2Info.Service.USERINFO);
 						break;
 						
 					case R.id.radioButton2:
-						selectService = 2;
-						Oauth2Info.getInstance().setENDPOINT_URL(Oauth2Info.getInstance().getENDPOINT_Tasks());
-						Oauth2Info.getInstance().setSCOPE(Oauth2Info.getInstance().getSCOPE_Tasks());
+						Oauth2Service.getInstance().setSelectService(Oauth2Info.Service.TASKS);
 						break;
 						
 					default :
@@ -66,8 +56,9 @@ public class MainActivity extends Activity
 						break;
 				}
 				
-				_loginWebView.setVisibility(View.VISIBLE);
-				_loginWebView.loadUrl(Oauth2Service.getInstance().getAuthorizationUrl());
+				WebView loginWebView = (WebView) findViewById(R.id.webView1);
+				loginWebView.setVisibility(View.VISIBLE);
+				loginWebView.loadUrl(Oauth2Service.getInstance().getAuthorizationUrl());
 				
 				RelativeLayout relativeLayout = (RelativeLayout)findViewById(R.id.layout1);
 				relativeLayout.setVisibility(View.INVISIBLE);
@@ -77,10 +68,10 @@ public class MainActivity extends Activity
 	
 	private void initLoginWebView()
 	{
-		_loginWebView = (WebView) findViewById(R.id.webView1);
-		_loginWebView.getSettings().setJavaScriptEnabled(true);
+		final WebView loginWebView = (WebView) findViewById(R.id.webView1);
+		loginWebView.getSettings().setJavaScriptEnabled(true);
 		
-		_loginWebView.setWebViewClient(new WebViewClient()
+		loginWebView.setWebViewClient(new WebViewClient()
 		{			
 			public void onPageFinished(WebView view, String url)
 			{
@@ -93,19 +84,16 @@ public class MainActivity extends Activity
 							
 						Oauth2Service.getInstance().codeToCredential(code);
 	
-						_loginWebView.setVisibility(View.INVISIBLE);
+						loginWebView.setVisibility(View.INVISIBLE);
 						
-						Intent intent = null;
-						
-						if(selectService == 1)      intent = new Intent(getApplicationContext(), UserInfoService.class);
-						else if(selectService == 2)	intent = new Intent(getApplicationContext(), TasksService.class);
+						Intent intent = new Intent(getApplicationContext(), Oauth2Service.getInstance().getServiceClass());			
 						startActivity(intent);
 						finish();
 					}
 					else if (url.indexOf("error=") != -1)
 					{
 						Toast.makeText(getApplicationContext(), "code error", Toast.LENGTH_LONG).show();
-						_loginWebView.setVisibility(View.INVISIBLE);
+						loginWebView.setVisibility(View.INVISIBLE);
 					}
 				}
 			}

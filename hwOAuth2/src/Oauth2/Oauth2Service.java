@@ -3,6 +3,7 @@ package Oauth2;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
+import Oauth2.Oauth2Info.Service;
 import android.os.AsyncTask;
 
 import com.example.hwoauth2.googleapi.tasks.TasksService;
@@ -209,6 +210,22 @@ public class Oauth2Service
 		else if(Oauth2Info.getInstance().getSelectService() == Oauth2Info.Service.TASKS)    return TasksService.class;
 		
 		return null;
+	}
+	
+	public void setSelectService(Service service)
+	{
+		if(service == Oauth2Info.Service.USERINFO)
+		{
+			Oauth2Info.getInstance().setSelectService(Oauth2Info.Service.USERINFO);
+			Oauth2Info.getInstance().setENDPOINT_URL(Oauth2Info.getInstance().getENDPOINT_UserInfo());
+			Oauth2Info.getInstance().setSCOPE(Oauth2Info.getInstance().getSCOPE_UserInfo());
+		}
+		else if(service == Oauth2Info.Service.TASKS)
+		{
+			Oauth2Info.getInstance().setSelectService(Oauth2Info.Service.TASKS);
+			Oauth2Info.getInstance().setENDPOINT_URL(Oauth2Info.getInstance().getENDPOINT_Tasks());
+			Oauth2Info.getInstance().setSCOPE(Oauth2Info.getInstance().getSCOPE_Tasks());
+		}
 	}
 	
 	public GoogleCredential get_credential() {return _credential;}

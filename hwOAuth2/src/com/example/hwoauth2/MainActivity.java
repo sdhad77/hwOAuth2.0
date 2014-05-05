@@ -2,7 +2,6 @@ package com.example.hwoauth2;
 
 import com.example.hwoauth2.googleapi.tasks.TasksService;
 import com.example.hwoauth2.googleapi.userinfo.UserInfoService;
-import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 
 import Oauth2.Oauth2Info;
 import Oauth2.Oauth2Service;
@@ -52,10 +51,14 @@ public class MainActivity extends Activity
 				{
 					case R.id.radioButton1:
 						selectService = 1;
+						Oauth2Info.getInstance().setENDPOINT_URL(Oauth2Info.getInstance().getENDPOINT_UserInfo());
+						Oauth2Info.getInstance().setSCOPE(Oauth2Info.getInstance().getSCOPE_UserInfo());
 						break;
 						
 					case R.id.radioButton2:
 						selectService = 2;
+						Oauth2Info.getInstance().setENDPOINT_URL(Oauth2Info.getInstance().getENDPOINT_Tasks());
+						Oauth2Info.getInstance().setSCOPE(Oauth2Info.getInstance().getSCOPE_Tasks());
 						break;
 						
 					default :
@@ -64,6 +67,7 @@ public class MainActivity extends Activity
 				}
 				
 				_loginWebView.setVisibility(View.VISIBLE);
+				_loginWebView.loadUrl(Oauth2Service.getInstance().getAuthorizationUrl());
 				
 				RelativeLayout relativeLayout = (RelativeLayout)findViewById(R.id.layout1);
 				relativeLayout.setVisibility(View.INVISIBLE);
@@ -81,11 +85,11 @@ public class MainActivity extends Activity
 			public void onPageFinished(WebView view, String url)
 			{
 				super.onPageFinished(view, url);
-				if(url.startsWith(Oauth2Info.REDIRECT_URI))
+				if(url.startsWith(Oauth2Info.getInstance().getREDIRECT_URI()))
 				{
 					if (url.indexOf("code=") != -1)
 					{
-						String code = url.substring(Oauth2Info.REDIRECT_URI.length() + 7, url.length());
+						String code = url.substring(Oauth2Info.getInstance().getREDIRECT_URI().length() + 7, url.length());
 							
 						Oauth2Service.getInstance().codeToCredential(code);
 	
@@ -93,9 +97,8 @@ public class MainActivity extends Activity
 						
 						Intent intent = null;
 						
-						if(selectService == 1) intent = new Intent(getApplicationContext(), UserInfoService.class);
-						else if(selectService == 2) intent = new Intent(getApplicationContext(), TasksService.class);
-						
+						if(selectService == 1)      intent = new Intent(getApplicationContext(), UserInfoService.class);
+						else if(selectService == 2)	intent = new Intent(getApplicationContext(), TasksService.class);
 						startActivity(intent);
 						finish();
 					}
@@ -107,7 +110,5 @@ public class MainActivity extends Activity
 				}
 			}
 		});
-		
-		_loginWebView.loadUrl(Oauth2Service.getInstance().getAuthorizationUrl());
 	}
 }

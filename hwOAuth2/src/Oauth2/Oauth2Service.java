@@ -5,6 +5,8 @@ import java.util.concurrent.ExecutionException;
 
 import android.os.AsyncTask;
 
+import com.example.hwoauth2.googleapi.tasks.TasksService;
+import com.example.hwoauth2.googleapi.userinfo.UserInfoService;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeRequestUrl;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeTokenRequest;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
@@ -19,7 +21,7 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 public class Oauth2Service 
 {
 	private GoogleCredential _credential;
-
+	
 	private static Oauth2Service _instance;
 
 	private Oauth2Service()
@@ -35,16 +37,6 @@ public class Oauth2Service
 		}
 
 		return _instance;
-	}
-	
-	public GoogleCredential get_credential()
-	{
-		return _credential;
-	}
-
-	public void set_credential(GoogleCredential _credential)
-	{
-		this._credential = _credential;
 	}
 	
 	public String getAuthorizationUrl()
@@ -210,4 +202,16 @@ public class Oauth2Service
 			return str;
 		}
 	}
+	
+	public Class getServiceClass()
+	{
+		if     (Oauth2Info.getInstance().getSelectService() == Oauth2Info.Service.USERINFO) return UserInfoService.class;
+		else if(Oauth2Info.getInstance().getSelectService() == Oauth2Info.Service.TASKS)    return TasksService.class;
+		
+		return null;
+	}
+	
+	public GoogleCredential get_credential() {return _credential;}
+
+	public void set_credential(GoogleCredential _credential) {this._credential = _credential;}
 }

@@ -204,7 +204,7 @@ public class Oauth2Service
 		}
 	}
 	
-	public Class getServiceClass()
+	public Class<?> getServiceClass()
 	{
 		if     (Oauth2Info.getInstance().getSelectService() == Oauth2Info.Service.USERINFO) return UserInfoService.class;
 		else if(Oauth2Info.getInstance().getSelectService() == Oauth2Info.Service.TASKS)    return TasksService.class;

@@ -36,13 +36,11 @@ public class UserInfoService extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.userinfo_activity);
 		
-		Intent intent = getIntent();
-		
 		androidUniversalImageLoaderInit();
 		
 		Object[] jsonTempObject = new Object[3];
 	   	JsonParser jsonParser = new JsonParser();
-	    jsonTempObject = jsonParser.parse(intent.getStringExtra("jsonStr"));
+	    jsonTempObject = jsonParser.parse(getUserInfo());
 	  
 		ImageView imgView = (ImageView)findViewById(R.id.imageView);
 		

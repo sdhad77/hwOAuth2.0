@@ -10,8 +10,10 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
@@ -24,8 +26,6 @@ import com.google.api.services.tasks.model.TaskLists;
 
 public class TasksService extends Activity
 {
-	private ArrayAdapter<String> _adapter;
-	
 	private static TasksService _instance;
 	
 	public static TasksService getInstance()
@@ -44,33 +44,56 @@ public class TasksService extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tasks_activity);
 		
-		TaskLists _taskLists = getTaskLists();
+		initTaskListsSpinner(getTaskLists());
+//		initTasksListListView(getTaskLists());
 		
-		ArrayList<String> _arrayList = new ArrayList<String>();
-       	for (TaskList taskList : _taskLists.getItems()) 
-       	{
-       		_arrayList.add(taskList.getTitle());
-       	}
+	}
+	
+	private void initTasksListListView(ArrayList<String> arrayList)
+	{
+		final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
        	
-       	_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, _arrayList);
+       	ListView listView = (ListView)findViewById(R.id.listView1);
+       	listView.setAdapter(adapter);
+       	listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+       	listView.setVisibility(View.VISIBLE);
        	
-       	ListView _listView = (ListView)findViewById(R.id.listView1);
-       	_listView.setAdapter(_adapter);
-       	_listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-       	_listView.setVisibility(View.VISIBLE);
-       	
-       	_listView.setOnItemClickListener(new OnItemClickListener()
+       	listView.setOnItemClickListener(new OnItemClickListener()
        	{
        		@Override
        		public void onItemClick(AdapterView<?> parent, View view, int position, long id)
        		{
-       			String str = (String)_adapter.getItem(position);
+       			String str = (String)adapter.getItem(position);
        			Toast.makeText(getBaseContext(), str, Toast.LENGTH_SHORT).show();
        		}
        	});
 	}
 	
-	public TaskLists getTaskLists()
+	private void initTaskListsSpinner(ArrayList<String> arrayList)
+	{
+		final ArrayAdapter<String> adapterSpinner = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arrayList);
+		adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        
+        Spinner spinner = (Spinner) findViewById(R.id.spinner1);
+        spinner.setPrompt("리스트를 선택해주세요");
+        spinner.setAdapter(adapterSpinner);
+        spinner.setVisibility(View.VISIBLE);
+        spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+			{
+				Toast.makeText(getApplicationContext(), adapterSpinner.getItem(position) + "을/를 선택 했습니다.", Toast.LENGTH_LONG).show();
+			}
+			
+			@Override
+			public void onNothingSelected(AdapterView<?> parent)
+			{
+			}
+		});
+	}
+	
+	public ArrayList<String> getTaskLists()
 	{
 		TaskLists taskLists = null;
 
@@ -87,7 +110,13 @@ public class TasksService extends Activity
 			e.printStackTrace();
 		}
 		
-		return taskLists;
+		ArrayList<String> _arrayList = new ArrayList<String>();
+       	for (TaskList taskList : taskLists.getItems()) 
+       	{
+       		_arrayList.add(taskList.getTitle());
+       	}
+		
+		return _arrayList;
 	}
 	
 	private class GetTaskLists extends AsyncTask<Void, Void, TaskLists>

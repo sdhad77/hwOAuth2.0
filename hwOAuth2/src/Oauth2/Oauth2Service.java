@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
 import Oauth2.Oauth2Info.Service;
+import SharedPreferences.PrefService;
 import android.os.AsyncTask;
 
 import com.example.hwoauth2.googleapi.tasks.TasksService;
@@ -57,7 +58,7 @@ public class Oauth2Service
 		return _credential;
 	}
 	
-	public GoogleCredential makeCredential(GoogleTokenResponse token)
+	public GoogleCredential makeCredential(GoogleTokenResponse response)
 	{
 		GoogleCredential credential = new GoogleCredential.Builder()
 										.setTransport(new NetHttpTransport())
@@ -66,8 +67,8 @@ public class Oauth2Service
 												          Oauth2Info.getInstance().getCLIENT_SECRET())
 										.build();
 
-		credential.setAccessToken(token.getAccessToken());
-		credential.setRefreshToken(token.getRefreshToken());
+		credential.setAccessToken(response.getAccessToken());
+		credential.setRefreshToken(response.getRefreshToken());
 		
 		return credential;
 	}
@@ -226,6 +227,34 @@ public class Oauth2Service
 			Oauth2Info.getInstance().setENDPOINT_URL(Oauth2Info.getInstance().getENDPOINT_Tasks());
 			Oauth2Info.getInstance().setSCOPE(Oauth2Info.getInstance().getSCOPE_Tasks());
 		}
+	}
+	
+	public void storeToken()
+	{
+		if(Oauth2Info.getInstance().getSelectService() == Oauth2Info.Service.USERINFO)
+		{
+			PrefService.getInstance().put(PrefService.PREF_ACCESS_TOKEN_USERINFO, _credential.getAccessToken());
+			PrefService.getInstance().put(PrefService.PREF_REFRESH_TOKEN_USERINFO, _credential.getRefreshToken());
+		}
+		else if(Oauth2Info.getInstance().getSelectService() == Oauth2Info.Service.TASKS)
+		{
+			PrefService.getInstance().put(PrefService.PREF_ACCESS_TOKEN_TASKS, _credential.getAccessToken());
+			PrefService.getInstance().put(PrefService.PREF_REFRESH_TOKEN_TASKS, _credential.getRefreshToken());
+		}
+	}
+	
+	public String loadAccessToken()
+	{
+		if(Oauth2Info.getInstance().getSelectService() == Oauth2Info.Service.USERINFO)
+		{
+			return PrefService.getInstance().getValue(PrefService.PREF_ACCESS_TOKEN_USERINFO, PrefService.PREF_TOKEN_IS_NOT_EXIST);
+		}
+		else if(Oauth2Info.getInstance().getSelectService() == Oauth2Info.Service.TASKS)
+		{
+			return PrefService.getInstance().getValue(PrefService.PREF_ACCESS_TOKEN_TASKS, PrefService.PREF_TOKEN_IS_NOT_EXIST);
+		}
+		
+		return PrefService.PREF_TOKEN_IS_NOT_EXIST;
 	}
 	
 	public GoogleCredential get_credential() {return _credential;}

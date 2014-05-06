@@ -15,11 +15,14 @@ public class PrefService
 {
 	private final String PREF_NAME = "token";
 	
+	//토큰이 존재하지 않을 때 사용 할 문자열
 	public final static String PREF_TOKEN_IS_NOT_EXIST     = "token_is_not_exist";
  
+	//사용자 정보 서비스 관련 토큰을 이용할 때 사용할 문자열
 	public final static String PREF_ACCESS_TOKEN_USERINFO  = "access_token_userinfo";
 	public final static String PREF_REFRESH_TOKEN_USERINFO = "refresh_token_userinfo";
 	
+	//Tasks 서비스 관련 토큰을 이용할 때 사용할 문자열
 	public final static String PREF_ACCESS_TOKEN_TASKS     = "access_token_tasks";
 	public final static String PREF_REFRESH_TOKEN_TASKS    = "refresh_token_tasks";
      

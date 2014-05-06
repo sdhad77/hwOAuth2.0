@@ -2,6 +2,7 @@ package com.example.hwoauth2;
 
 import Oauth2.Oauth2Info;
 import Oauth2.Oauth2Service;
+import SharedPreferences.SharedPreferencesService;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ public class MainActivity extends Activity
 	
 	private void init()
 	{
+		SharedPreferencesService.getInstance().set_mContext(getApplicationContext());
 		initServiceSelectButton();
 		initLoginWebView();
 	}

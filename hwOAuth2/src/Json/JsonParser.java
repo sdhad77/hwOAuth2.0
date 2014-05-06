@@ -4,17 +4,21 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * JSON 문자열을 파싱하는 클래스입니다.
+ * @author 신동환
+ */
 public class JsonParser
 {
 	private JSONObject json;
 	
-	public Object[] parse(String str)
+	public Object[] parseUserInfo(String str)
 	{
-		
 		Object[] jsonResult = new Object[3];
 		
 		try
 		{
+			//문자열에서 name, email, picture 데이터 뽑아냄.
 			json = new JSONObject(str);
 			jsonResult[0] = json.get(JsonInfo.JSON_USERINFO_NAME);
 			jsonResult[1] = json.get(JsonInfo.JSON_USERINFO_EMAIL);
@@ -28,7 +32,7 @@ public class JsonParser
 		return jsonResult;
 	}
 	
-	public Object[][] parseArray(String str)
+	public Object[][] parseTaskLists(String str)
 	{
 		Object[][] parseredData = null;
 		
@@ -46,6 +50,7 @@ public class JsonParser
 				{
 					for(int j = 0; j < jsonName.length; j++)
 					{
+						//TITLE, ID, SELFLINK 정보를 저장
 						parseredData[i][j] = json.getString(jsonName[j]);
 					}
 				}

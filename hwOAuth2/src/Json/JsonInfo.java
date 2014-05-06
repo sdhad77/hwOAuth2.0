@@ -1,5 +1,9 @@
 package Json;
 
+/**
+ * Json 문자열에서 원하는 데이터를 Get하기 위한 Key값들의 클래스입니다.
+ * @author 신동환
+ */
 public class JsonInfo {
 	
 	final public static String JSON_USERINFO_NAME    = "name";

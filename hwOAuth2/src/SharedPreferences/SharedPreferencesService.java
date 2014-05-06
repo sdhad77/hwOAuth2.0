@@ -18,13 +18,13 @@ public class SharedPreferencesService
 	public final static String PREF_ACCESS_TOKEN = "access_token";
 	public final static String PREF_REFRESH_TOKEN = "refresh_token";
      
-	private Context mContext;
+	private Context _mContext;
  
 	private static SharedPreferencesService _instance;
 
 	private SharedPreferencesService()
 	{
-		mContext = null;
+		_mContext = null;
 	}
 	
 	public static SharedPreferencesService getInstance()
@@ -36,11 +36,6 @@ public class SharedPreferencesService
 
 		return _instance;
 	}
-	
-	public SharedPreferencesService(Context c) 
-	{
-		mContext = c;
-	}
  
 	/**
 	 * 데이터를 저장함
@@ -49,7 +44,7 @@ public class SharedPreferencesService
 	 */
 	public void put(String key, String value)
 	{
-		SharedPreferences pref = mContext.getSharedPreferences(PREF_NAME, Activity.MODE_PRIVATE);
+		SharedPreferences pref = _mContext.getSharedPreferences(PREF_NAME, Activity.MODE_PRIVATE);
 		SharedPreferences.Editor editor = pref.edit();
  
 		editor.putString(key, value);
@@ -62,17 +57,17 @@ public class SharedPreferencesService
 	 * @param dftValue 키가 존재하지 않을때 사용할 디폴트 데이터
 	 * @return 읽어온 데이터 or dftValue
 	 */
-	public String getValue(String key, String dftValue)
+	public String getValue(String key, String defValue)
 	{
-		SharedPreferences pref = mContext.getSharedPreferences(PREF_NAME, Activity.MODE_PRIVATE);
+		SharedPreferences pref = _mContext.getSharedPreferences(PREF_NAME, Activity.MODE_PRIVATE);
  
 		try
 		{
-			return pref.getString(key, dftValue);
+			return pref.getString(key, defValue);
 		}
 		catch (Exception e)
 		{
-			return dftValue;
+			return defValue;
 		} 
 	}
 	
@@ -81,9 +76,13 @@ public class SharedPreferencesService
 	 */
 	public void removeAllPreferences()
 	{
-        SharedPreferences pref = mContext.getSharedPreferences("pref", Activity.MODE_PRIVATE);
-        SharedPreferences.Editor editor = pref.edit();
-        editor.clear();
-        editor.commit();
-    }
+		SharedPreferences pref = _mContext.getSharedPreferences("pref", Activity.MODE_PRIVATE);
+		SharedPreferences.Editor editor = pref.edit();
+		editor.clear();
+		editor.commit();
+	}
+	
+	public Context get_mContext() {return _mContext;}
+
+	public void set_mContext(Context _mContext) {this._mContext = _mContext;}
 }

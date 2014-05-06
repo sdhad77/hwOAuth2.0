@@ -23,12 +23,14 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 public class Oauth2Service 
 {
 	private GoogleCredential _credential;
+	private String _accessToken;
 	
 	private static Oauth2Service _instance;
 
 	private Oauth2Service()
 	{
 		_credential = null;
+		_accessToken = null;
 	}
 	
 	public static Oauth2Service getInstance()
@@ -55,7 +57,22 @@ public class Oauth2Service
 	public GoogleCredential codeToCredential(String code)
 	{
 		_credential = makeCredential(accessTokenRequest(code));
+		storeToken();
 		return _credential;
+	}
+	
+	public void makeCredential()
+	{
+		GoogleCredential credential = new GoogleCredential.Builder()
+										.setTransport(new NetHttpTransport())
+										.setJsonFactory(new JacksonFactory())
+										.setClientSecrets(Oauth2Info.getInstance().getCLIENT_ID(), 
+												          Oauth2Info.getInstance().getCLIENT_SECRET())
+										.build();
+
+		credential.setAccessToken(get_accessToken());
+		
+		_credential = credential;
 	}
 	
 	public GoogleCredential makeCredential(GoogleTokenResponse response)
@@ -227,6 +244,7 @@ public class Oauth2Service
 			Oauth2Info.getInstance().setENDPOINT_URL(Oauth2Info.getInstance().getENDPOINT_Tasks());
 			Oauth2Info.getInstance().setSCOPE(Oauth2Info.getInstance().getSCOPE_Tasks());
 		}
+		set_accessToken(loadAccessToken());
 	}
 	
 	public void storeToken()
@@ -242,7 +260,7 @@ public class Oauth2Service
 			PrefService.getInstance().put(PrefService.PREF_REFRESH_TOKEN_TASKS, _credential.getRefreshToken());
 		}
 	}
-	
+
 	public String loadAccessToken()
 	{
 		if(Oauth2Info.getInstance().getSelectService() == Oauth2Info.Service.USERINFO)
@@ -258,6 +276,8 @@ public class Oauth2Service
 	}
 	
 	public GoogleCredential get_credential() {return _credential;}
+	public String get_accessToken()          {return _accessToken;}
 
 	public void set_credential(GoogleCredential _credential) {this._credential = _credential;}
+	public void set_accessToken(String _accessToken)         {this._accessToken = _accessToken;}
 }

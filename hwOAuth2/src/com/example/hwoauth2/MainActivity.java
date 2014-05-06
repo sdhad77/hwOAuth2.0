@@ -57,13 +57,22 @@ public class MainActivity extends Activity
 						Toast.makeText(getApplicationContext(), "존재하지 않는 ID 입니다", Toast.LENGTH_LONG).show();
 						break;
 				}
-				
-				WebView loginWebView = (WebView) findViewById(R.id.webView1);
-				loginWebView.setVisibility(View.VISIBLE);
-				loginWebView.loadUrl(Oauth2Service.getInstance().getAuthorizationUrl());
-				
-				RelativeLayout relativeLayout = (RelativeLayout)findViewById(R.id.layout1);
-				relativeLayout.setVisibility(View.INVISIBLE);
+				if(Oauth2Service.getInstance().get_accessToken() == PrefService.PREF_TOKEN_IS_NOT_EXIST)
+				{
+					WebView loginWebView = (WebView) findViewById(R.id.webView1);
+					loginWebView.setVisibility(View.VISIBLE);
+					loginWebView.loadUrl(Oauth2Service.getInstance().getAuthorizationUrl());
+					
+					RelativeLayout relativeLayout = (RelativeLayout)findViewById(R.id.layout1);
+					relativeLayout.setVisibility(View.INVISIBLE);
+				}
+				else
+				{
+					Oauth2Service.getInstance().makeCredential();
+					Intent intent = new Intent(getApplicationContext(), Oauth2Service.getInstance().getServiceClass());			
+					startActivity(intent);
+					finish();
+				}
 			}
 		});
 	}

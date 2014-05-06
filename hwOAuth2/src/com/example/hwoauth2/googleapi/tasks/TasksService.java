@@ -21,6 +21,7 @@ import com.example.hwoauth2.R;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.tasks.Tasks;
+import com.google.api.services.tasks.model.Task;
 import com.google.api.services.tasks.model.TaskList;
 import com.google.api.services.tasks.model.TaskLists;
 
@@ -45,12 +46,14 @@ public class TasksService extends Activity
 		setContentView(R.layout.tasks_activity);
 		
 		initTaskListsSpinner(getTaskLists());
-//		initTasksListListView(getTaskLists());
-		
 	}
 	
-	private void initTasksListListView(ArrayList<String> arrayList)
+	private void initTasksListListView(com.google.api.services.tasks.model.Tasks tasks)
 	{
+		ArrayList<String> arrayList = new ArrayList<String>();
+		
+		for (Task task : tasks.getItems()) arrayList.add(task.getTitle());
+		
 		final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
        	
        	ListView listView = (ListView)findViewById(R.id.listView1);
@@ -69,8 +72,12 @@ public class TasksService extends Activity
        	});
 	}
 	
-	private void initTaskListsSpinner(ArrayList<String> arrayList)
+	private void initTaskListsSpinner(final TaskLists taskLists)
 	{
+		ArrayList<String> arrayList = new ArrayList<String>();
+		
+       	for (TaskList taskList : taskLists.getItems()) arrayList.add(taskList.getTitle());
+       	
 		final ArrayAdapter<String> adapterSpinner = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arrayList);
 		adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         
@@ -83,7 +90,10 @@ public class TasksService extends Activity
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
 			{
-				Toast.makeText(getApplicationContext(), adapterSpinner.getItem(position) + "을/를 선택 했습니다.", Toast.LENGTH_LONG).show();
+				for (TaskList taskList : taskLists.getItems())
+				{
+					if(taskList.getTitle() == adapterSpinner.getItem(position)) initTasksListListView(getTasksList(taskList.getId()));
+				}
 			}
 			
 			@Override
@@ -93,7 +103,7 @@ public class TasksService extends Activity
 		});
 	}
 	
-	public ArrayList<String> getTaskLists()
+	private TaskLists getTaskLists()
 	{
 		TaskLists taskLists = null;
 
@@ -109,14 +119,8 @@ public class TasksService extends Activity
 		{
 			e.printStackTrace();
 		}
-		
-		ArrayList<String> _arrayList = new ArrayList<String>();
-       	for (TaskList taskList : taskLists.getItems()) 
-       	{
-       		_arrayList.add(taskList.getTitle());
-       	}
-		
-		return _arrayList;
+		    	
+		return taskLists;
 	}
 	
 	private class GetTaskLists extends AsyncTask<Void, Void, TaskLists>
@@ -145,7 +149,7 @@ public class TasksService extends Activity
 		}
 	}
 	
-	public void addTaskList(TaskList taskList)
+	private void addTaskList(TaskList taskList)
 	{
 		try
 		{
@@ -183,6 +187,52 @@ public class TasksService extends Activity
 			}
 			
 			return null;
+		}
+	}
+	
+	private com.google.api.services.tasks.model.Tasks getTasksList(String tasksId)
+	{
+		com.google.api.services.tasks.model.Tasks tasksList = null;
+
+		try 
+		{
+			tasksList = new GetTasksList().execute(tasksId).get();
+		} 
+		catch (InterruptedException e)
+		{
+			e.printStackTrace();
+		}
+		catch (ExecutionException e)
+		{
+			e.printStackTrace();
+		}
+		    	
+		return tasksList;
+	}
+	
+	private class GetTasksList extends AsyncTask<String, Void, com.google.api.services.tasks.model.Tasks>
+	{
+		@Override
+		protected com.google.api.services.tasks.model.Tasks doInBackground(String... params)
+		{
+			Tasks service = new Tasks.Builder(
+								new NetHttpTransport(), 
+								new JacksonFactory(), 
+								Oauth2Service.getInstance().get_credential())
+								.setApplicationName("MYTask")
+								.build();
+
+			com.google.api.services.tasks.model.Tasks tasksList = null;
+			try
+			{
+				tasksList = service.tasks().list(params[0]).execute();
+			} 
+			catch (IOException e)
+			{
+				e.printStackTrace();
+			}
+			
+			return tasksList;
 		}
 	}
 }

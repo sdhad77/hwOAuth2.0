@@ -3,6 +3,10 @@ package Oauth2;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * 인증 과정에서 필요한 데이터들을 관리하는 클래스입니다.
+ * @author 신동환
+ */
 public class Oauth2Info
 {
 	final private String CLIENT_ID = "438691373590-52ct0cdjpic99f80orje850gutg1elg6.apps.googleusercontent.com";
@@ -10,9 +14,11 @@ public class Oauth2Info
 	final private String API_KEY = "AIzaSyCz-ZbhCQwM5mEJEGWkPI8HhoUwklHoGIc";
 	final private String REDIRECT_URI = "http://localhost";
 	
+	//SCOPE, ENDPOINT는 서비스에 따라 값이 변하기 때문에 변수로 사용하기 위해 final 선언을 하지 않았습니다.
 	private String ENDPOINT_URL;
 	private List<String> SCOPE;
 	
+	//사용가능한 서비스 목록입니다. 현재 사용자 정보, Tasks 서비스 이용가능합니다.
 	public enum Service {NONE, USERINFO, TASKS};
 	private Service selectService = Service.NONE;
 	
@@ -37,6 +43,7 @@ public class Oauth2Info
 		return _instance;
 	}
 
+	//get, set 함수들입니다.
 	public Service getSelectService()       {return selectService;}
 	public String getCLIENT_ID()            {return CLIENT_ID;}
 	public String getCLIENT_SECRET()        {return CLIENT_SECRET;}

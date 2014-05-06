@@ -60,44 +60,54 @@ public class MainActivity extends Activity
 				
 				RadioGroup serviceRadioGroup = (RadioGroup)findViewById(R.id.radioGroup1);
 				
-				//선택한 서비스가 무엇인지..
-				switch(serviceRadioGroup.getCheckedRadioButtonId())
+				//서비스가 선택되었는지
+				if(serviceRadioGroup.getCheckedRadioButtonId() > 0)
 				{
-					//사용자 정보 서비스 이용
-					case R.id.radioButton1:
-						Oauth2Service.getInstance().setSelectService(Oauth2Info.Service.USERINFO);
-						break;
-						
-					//Tasks 서비스 이용
-					case R.id.radioButton2:
-						Oauth2Service.getInstance().setSelectService(Oauth2Info.Service.TASKS);
-						break;
-						
-					default :
-						Toast.makeText(getApplicationContext(), "존재하지 않는 ID 입니다", Toast.LENGTH_LONG).show();
-						break;
-				}
-				
-				//access토큰이 존재하지 않을 경우, 즉 첫 접속일 경우
-				if(Oauth2Service.getInstance().get_accessToken() == PrefService.PREF_TOKEN_IS_NOT_EXIST)
-				{
-					//로그인 및 권한 획득을 위해 웹뷰를 사용합니다.
-					WebView loginWebView = (WebView) findViewById(R.id.webView1);
-					loginWebView.setVisibility(View.VISIBLE);
-					loginWebView.loadUrl(Oauth2Service.getInstance().getAuthorizationUrl());
+					//선택한 서비스가 무엇인지..
+					switch(serviceRadioGroup.getCheckedRadioButtonId())
+					{
+						//사용자 정보 서비스 이용
+						case R.id.radioButton1:
+							Oauth2Service.getInstance().setSelectService(Oauth2Info.Service.USERINFO);
+							break;
+							
+						//Tasks 서비스 이용
+						case R.id.radioButton2:
+							Oauth2Service.getInstance().setSelectService(Oauth2Info.Service.TASKS);
+							break;
+							
+						default :
+							Toast.makeText(getApplicationContext(), "존재하지 않는 ID 입니다. 사용자 정보로 이동합니다.", Toast.LENGTH_LONG).show();
+							Oauth2Service.getInstance().setSelectService(Oauth2Info.Service.USERINFO);
+							break;
+					}
 					
-					//현재 보여지고 있는 레이아웃을 안보이게 합니다.
-					RelativeLayout relativeLayout = (RelativeLayout)findViewById(R.id.layout1);
-					relativeLayout.setVisibility(View.INVISIBLE);
+					//access토큰이 존재하지 않을 경우, 즉 첫 접속일 경우
+					if(Oauth2Service.getInstance().get_accessToken() == PrefService.PREF_TOKEN_IS_NOT_EXIST)
+					{
+						//로그인 및 권한 획득을 위해 웹뷰를 사용합니다.
+						WebView loginWebView = (WebView) findViewById(R.id.webView1);
+						loginWebView.setVisibility(View.VISIBLE);
+						loginWebView.loadUrl(Oauth2Service.getInstance().getAuthorizationUrl());
+						
+						//현재 보여지고 있는 레이아웃을 안보이게 합니다.
+						RelativeLayout relativeLayout = (RelativeLayout)findViewById(R.id.layout1);
+						relativeLayout.setVisibility(View.INVISIBLE);
+					}
+					//access토큰이 존재하는 경우
+					else
+					{
+						//access토큰을 읽어와서 바로 서비스로 이동을 합니다.
+						Oauth2Service.getInstance().makeCredential();
+						Intent intent = new Intent(getApplicationContext(), Oauth2Service.getInstance().getServiceClass());			
+						startActivity(intent);
+						finish();
+					}
 				}
-				//access토큰이 존재하는 경우
+				//서비스가 선택되지 않았을 경우
 				else
 				{
-					//access토큰을 읽어와서 바로 서비스로 이동을 합니다.
-					Oauth2Service.getInstance().makeCredential();
-					Intent intent = new Intent(getApplicationContext(), Oauth2Service.getInstance().getServiceClass());			
-					startActivity(intent);
-					finish();
+					Toast.makeText(getApplicationContext(), "서비스를 선택해주세요", Toast.LENGTH_LONG).show();
 				}
 			}
 		});

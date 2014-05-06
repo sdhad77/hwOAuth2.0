@@ -11,27 +11,32 @@ import android.content.SharedPreferences;
  * http://arabiannight.tistory.com/198</br>
  * @author ½Åµ¿È¯
  */
-public class SharedPreferencesService
+public class PrefService
 {
 	private final String PREF_NAME = "token";
+	
+	public final static String PREF_TOKEN_IS_NOT_EXIST     = "token_is_not_exist";
  
-	public final static String PREF_ACCESS_TOKEN = "access_token";
-	public final static String PREF_REFRESH_TOKEN = "refresh_token";
+	public final static String PREF_ACCESS_TOKEN_USERINFO  = "access_token_userinfo";
+	public final static String PREF_REFRESH_TOKEN_USERINFO = "refresh_token_userinfo";
+	
+	public final static String PREF_ACCESS_TOKEN_TASKS     = "access_token_tasks";
+	public final static String PREF_REFRESH_TOKEN_TASKS    = "refresh_token_tasks";
      
 	private Context _mContext;
  
-	private static SharedPreferencesService _instance;
+	private static PrefService _instance;
 
-	private SharedPreferencesService()
+	private PrefService()
 	{
 		_mContext = null;
 	}
 	
-	public static SharedPreferencesService getInstance()
+	public static PrefService getInstance()
 	{
 		if( _instance == null )
 		{
-			_instance = new SharedPreferencesService();
+			_instance = new PrefService();
 		}
 
 		return _instance;

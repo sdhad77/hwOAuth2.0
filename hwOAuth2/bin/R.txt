@@ -303,11 +303,12 @@ int id action_context_bar 0x7f060020
 int id action_menu_divider 0x7f060019
 int id action_menu_presenter 0x7f06001a
 int id action_mode_close_button 0x7f060027
-int id action_settings 0x7f06004b
+int id action_settings 0x7f06004c
 int id activity_chooser_view_content 0x7f060028
 int id always 0x7f06000f
 int id beginning 0x7f060014
 int id button1 0x7f060046
+int id button2 0x7f060047
 int id checkbox 0x7f060030
 int id collapseActionView 0x7f060011
 int id container 0x7f06003f
@@ -325,10 +326,10 @@ int id hybrid 0x7f060004
 int id icon 0x7f06002d
 int id ifRoom 0x7f06000e
 int id image 0x7f06002a
-int id imageView 0x7f060048
+int id imageView 0x7f060049
 int id layout1 0x7f060041
 int id listMode 0x7f060005
-int id listView1 0x7f060047
+int id listView1 0x7f060048
 int id list_item 0x7f06002c
 int id middle 0x7f060015
 int id never 0x7f06000d
@@ -360,8 +361,8 @@ int id split_action_bar 0x7f060021
 int id submit_area 0x7f06003c
 int id tabMode 0x7f060006
 int id terrain 0x7f060003
-int id textView1 0x7f060049
-int id textView2 0x7f06004a
+int id textView1 0x7f06004a
+int id textView2 0x7f06004b
 int id title 0x7f06002e
 int id top_action_bar 0x7f060023
 int id up 0x7f060024

@@ -81,7 +81,7 @@ public class PrefService
 	 */
 	public void removeAllPreferences()
 	{
-		SharedPreferences pref = _mContext.getSharedPreferences("pref", Activity.MODE_PRIVATE);
+		SharedPreferences pref = _mContext.getSharedPreferences(PREF_NAME, Activity.MODE_PRIVATE);
 		SharedPreferences.Editor editor = pref.edit();
 		editor.clear();
 		editor.commit();

@@ -31,8 +31,9 @@ public class MainActivity extends Activity
 		PrefService.getInstance().set_mContext(getApplicationContext());
 		initServiceSelectButton();
 		initLoginWebView();
+		initDeleteCacheDataButton();
 	}
-	
+
 	private void initServiceSelectButton()
 	{
 		Button serviceSelectButton = (Button)findViewById(R.id.button1);
@@ -107,6 +108,19 @@ public class MainActivity extends Activity
 						loginWebView.setVisibility(View.INVISIBLE);
 					}
 				}
+			}
+		});
+	}
+	
+	private void initDeleteCacheDataButton()
+	{
+		Button deleteCacheDataButton = (Button)findViewById(R.id.button2);
+		deleteCacheDataButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				PrefService.getInstance().removeAllPreferences();
+				Toast.makeText(getApplicationContext(), "데이터가 삭제 되었습니다", Toast.LENGTH_LONG).show();
 			}
 		});
 	}

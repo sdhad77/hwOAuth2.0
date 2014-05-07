@@ -16,8 +16,8 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 /**
- * ¸ŞÀÎ ¾×Æ¼ºñÆ¼
- * @author ½Åµ¿È¯
+ * ë©”ì¸ ì•¡í‹°ë¹„í‹°
+ * @author ì‹ ë™í™˜
  */
 public class MainActivity extends Activity
 {
@@ -27,16 +27,16 @@ public class MainActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
         
-		//ÃÊ±âÈ­
+		//ì´ˆê¸°í™”
 		init();
 	}
 	
 	/**
-	 * °¢Á¾ ±â´Éµé ÃÊ±âÈ­</br>
-	 * ÅäÅ« ÀúÀå¼­ºñ½ºÀÎ PrefService,</br>
-	 * ¾î¶² ±¸±Û ¼­ºñ½º¸¦ ÀÌ¿ëÇÒ °ÍÀÎÁö ¼±ÅÃÇÏ´Â ServiceSelectButton,</br>
-	 * ¼±ÅÃÇÑ ±â´ÉÀ» »ç¿ëÇÏ±â À§ÇØ ÀÎÁõ ±â´ÉÀ» »ç¿ëÇÏ±â À§ÇÑ LoginWebView,</br>
-	 * ÀúÀåµÈ ÅäÅ«À» Á¦°ÅÇÏ´Â DeleteCacheDataButton
+	 * ê°ì¢… ê¸°ëŠ¥ë“¤ ì´ˆê¸°í™”</br>
+	 * í† í° ì €ì¥ì„œë¹„ìŠ¤ì¸ PrefService,</br>
+	 * ì–´ë–¤ êµ¬ê¸€ ì„œë¹„ìŠ¤ë¥¼ ì´ìš©í•  ê²ƒì¸ì§€ ì„ íƒí•˜ëŠ” ServiceSelectButton,</br>
+	 * ì„ íƒí•œ ê¸°ëŠ¥ì„ ì‚¬ìš©í•˜ê¸° ìœ„í•´ ì¸ì¦ ê¸°ëŠ¥ì„ ì‚¬ìš©í•˜ê¸° ìœ„í•œ LoginWebView,</br>
+	 * ì €ì¥ëœ í† í°ì„ ì œê±°í•˜ëŠ” DeleteCacheDataButton
 	 */
 	private void init()
 	{
@@ -47,8 +47,8 @@ public class MainActivity extends Activity
 	}
 
 	/**
-	 * ¾î¶² ±¸±Û ¼­ºñ½º¸¦ ÀÌ¿ëÇÒ °ÍÀÎÁö ¼±ÅÃÇÏ´Â ¹öÆ°ÀÔ´Ï´Ù.</br>
-	 * ¶óµğ¿À¹öÆ°À¸·Î ¼±ÅÃ°¡´ÉÇÑ ¸®½ºÆ®¸¦ º¸¿©ÁÖ°í, ±× Áß ÇÏ³ª¸¦ ¼±ÅÃÇÏ¿© È®ÀÎ¹öÆ°À» ´©¸£¸é ¼­ºñ½º¸¦ ÀÌ¿ëÇÒ ¼ö ÀÖ½À´Ï´Ù.</br>
+	 * ì–´ë–¤ êµ¬ê¸€ ì„œë¹„ìŠ¤ë¥¼ ì´ìš©í•  ê²ƒì¸ì§€ ì„ íƒí•˜ëŠ” ë²„íŠ¼ì…ë‹ˆë‹¤.</br>
+	 * ë¼ë””ì˜¤ë²„íŠ¼ìœ¼ë¡œ ì„ íƒê°€ëŠ¥í•œ ë¦¬ìŠ¤íŠ¸ë¥¼ ë³´ì—¬ì£¼ê³ , ê·¸ ì¤‘ í•˜ë‚˜ë¥¼ ì„ íƒí•˜ì—¬ í™•ì¸ë²„íŠ¼ì„ ëˆ„ë¥´ë©´ ì„œë¹„ìŠ¤ë¥¼ ì´ìš©í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.</br>
 	 */
 	private void initServiceSelectButton()
 	{
@@ -60,61 +60,61 @@ public class MainActivity extends Activity
 				
 				RadioGroup serviceRadioGroup = (RadioGroup)findViewById(R.id.radioGroup1);
 				
-				//¼­ºñ½º°¡ ¼±ÅÃµÇ¾ú´ÂÁö
+				//ì„œë¹„ìŠ¤ê°€ ì„ íƒë˜ì—ˆëŠ”ì§€
 				if(serviceRadioGroup.getCheckedRadioButtonId() > 0)
 				{
-					//¼±ÅÃÇÑ ¼­ºñ½º°¡ ¹«¾ùÀÎÁö..
+					//ì„ íƒí•œ ì„œë¹„ìŠ¤ê°€ ë¬´ì—‡ì¸ì§€..
 					switch(serviceRadioGroup.getCheckedRadioButtonId())
 					{
-						//»ç¿ëÀÚ Á¤º¸ ¼­ºñ½º ÀÌ¿ë
+						//ì‚¬ìš©ì ì •ë³´ ì„œë¹„ìŠ¤ ì´ìš©
 						case R.id.radioButton1:
 							Oauth2Service.getInstance().setSelectService(Oauth2Info.Service.USERINFO);
 							break;
 							
-						//Tasks ¼­ºñ½º ÀÌ¿ë
+						//Tasks ì„œë¹„ìŠ¤ ì´ìš©
 						case R.id.radioButton2:
 							Oauth2Service.getInstance().setSelectService(Oauth2Info.Service.TASKS);
 							break;
 							
 						default :
-							Toast.makeText(getApplicationContext(), "Á¸ÀçÇÏÁö ¾Ê´Â ID ÀÔ´Ï´Ù. »ç¿ëÀÚ Á¤º¸·Î ÀÌµ¿ÇÕ´Ï´Ù.", Toast.LENGTH_LONG).show();
+							Toast.makeText(getApplicationContext(), "ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ID ì…ë‹ˆë‹¤. ì‚¬ìš©ì ì •ë³´ë¡œ ì´ë™í•©ë‹ˆë‹¤.", Toast.LENGTH_LONG).show();
 							Oauth2Service.getInstance().setSelectService(Oauth2Info.Service.USERINFO);
 							break;
 					}
 					
-					//accessÅäÅ«ÀÌ Á¸ÀçÇÏÁö ¾ÊÀ» °æ¿ì, Áï Ã¹ Á¢¼ÓÀÏ °æ¿ì
+					//accessí† í°ì´ ì¡´ì¬í•˜ì§€ ì•Šì„ ê²½ìš°, ì¦‰ ì²« ì ‘ì†ì¼ ê²½ìš°
 					if(Oauth2Service.getInstance().get_accessToken() == PrefService.PREF_TOKEN_IS_NOT_EXIST)
 					{
-						//·Î±×ÀÎ ¹× ±ÇÇÑ È¹µæÀ» À§ÇØ À¥ºä¸¦ »ç¿ëÇÕ´Ï´Ù.
+						//ë¡œê·¸ì¸ ë° ê¶Œí•œ íšë“ì„ ìœ„í•´ ì›¹ë·°ë¥¼ ì‚¬ìš©í•©ë‹ˆë‹¤.
 						WebView loginWebView = (WebView) findViewById(R.id.webView1);
 						loginWebView.setVisibility(View.VISIBLE);
 						loginWebView.loadUrl(Oauth2Service.getInstance().getAuthorizationUrl());
 						
-						//ÇöÀç º¸¿©Áö°í ÀÖ´Â ·¹ÀÌ¾Æ¿ôÀ» ¾Èº¸ÀÌ°Ô ÇÕ´Ï´Ù.
+						//í˜„ì¬ ë³´ì—¬ì§€ê³  ìˆëŠ” ë ˆì´ì•„ì›ƒì„ ì•ˆë³´ì´ê²Œ í•©ë‹ˆë‹¤.
 						RelativeLayout relativeLayout = (RelativeLayout)findViewById(R.id.layout1);
 						relativeLayout.setVisibility(View.INVISIBLE);
 					}
-					//accessÅäÅ«ÀÌ Á¸ÀçÇÏ´Â °æ¿ì
+					//accessí† í°ì´ ì¡´ì¬í•˜ëŠ” ê²½ìš°
 					else
 					{
-						//accessÅäÅ«À» ÀĞ¾î¿Í¼­ ¹Ù·Î ¼­ºñ½º·Î ÀÌµ¿À» ÇÕ´Ï´Ù.
+						//accessí† í°ì„ ì½ì–´ì™€ì„œ ë°”ë¡œ ì„œë¹„ìŠ¤ë¡œ ì´ë™ì„ í•©ë‹ˆë‹¤.
 						Oauth2Service.getInstance().makeCredential();
 						Intent intent = new Intent(getApplicationContext(), Oauth2Service.getInstance().getServiceClass());			
 						startActivity(intent);
 						finish();
 					}
 				}
-				//¼­ºñ½º°¡ ¼±ÅÃµÇÁö ¾Ê¾ÒÀ» °æ¿ì
+				//ì„œë¹„ìŠ¤ê°€ ì„ íƒë˜ì§€ ì•Šì•˜ì„ ê²½ìš°
 				else
 				{
-					Toast.makeText(getApplicationContext(), "¼­ºñ½º¸¦ ¼±ÅÃÇØÁÖ¼¼¿ä", Toast.LENGTH_LONG).show();
+					Toast.makeText(getApplicationContext(), "ì„œë¹„ìŠ¤ë¥¼ ì„ íƒí•´ì£¼ì„¸ìš”", Toast.LENGTH_LONG).show();
 				}
 			}
 		});
 	}
 	
 	/**
-	 * ¼±ÅÃÇÑ ±â´ÉÀ» »ç¿ëÇÏ±â À§ÇØ ±ÇÇÑ È¹µæÀ» ÇÏ´Â À¥ºä ÀÔ´Ï´Ù.
+	 * ì„ íƒí•œ ê¸°ëŠ¥ì„ ì‚¬ìš©í•˜ê¸° ìœ„í•´ ê¶Œí•œ íšë“ì„ í•˜ëŠ” ì›¹ë·° ì…ë‹ˆë‹¤.
 	 */
 	private void initLoginWebView()
 	{
@@ -130,21 +130,21 @@ public class MainActivity extends Activity
 				{
 					if (url.indexOf("code=") != -1)
 					{
-						//url¿¡¼­ ÇÊ¿äÇÑ code ºÎºĞ¸¸ Àß¶ó³À´Ï´Ù.
+						//urlì—ì„œ í•„ìš”í•œ code ë¶€ë¶„ë§Œ ì˜ë¼ëƒ…ë‹ˆë‹¤.
 						String code = url.substring(Oauth2Info.getInstance().getREDIRECT_URI().length() + 7, url.length());
 						
-						//Àß¶ó³½ code¸¦ ÀÌ¿ëÇÏ¿© CredentialÀ» ¸¸µì´Ï´Ù.
+						//ì˜ë¼ë‚¸ codeë¥¼ ì´ìš©í•˜ì—¬ Credentialì„ ë§Œë“­ë‹ˆë‹¤.
 						Oauth2Service.getInstance().codeToCredential(code);
 	
-						//»ç¿ëÀÌ ³¡³­ À¥ºä¸¦ ¾Èº¸ÀÌ°Ô ÇÏ°í,
+						//ì‚¬ìš©ì´ ëë‚œ ì›¹ë·°ë¥¼ ì•ˆë³´ì´ê²Œ í•˜ê³ ,
 						loginWebView.setVisibility(View.INVISIBLE);
 						
-						//¼­ºñ½º »ç¿ëÈ­¸éÀ¸·Î ³Ñ¾î°©´Ï´Ù.
+						//ì„œë¹„ìŠ¤ ì‚¬ìš©í™”ë©´ìœ¼ë¡œ ë„˜ì–´ê°‘ë‹ˆë‹¤.
 						Intent intent = new Intent(getApplicationContext(), Oauth2Service.getInstance().getServiceClass());			
 						startActivity(intent);
 						finish();
 					}
-					//¾ò¾î³½ ¹®ÀÚ¿­ÀÌ error·Î ½ÃÀÛµÇ´Â °æ¿ì, Áï code°ª¿¡ ¹®Á¦°¡ ÀÖÀ»°æ¿ì
+					//ì–»ì–´ë‚¸ ë¬¸ìì—´ì´ errorë¡œ ì‹œì‘ë˜ëŠ” ê²½ìš°, ì¦‰ codeê°’ì— ë¬¸ì œê°€ ìˆì„ê²½ìš°
 					else if (url.indexOf("error=") != -1)
 					{
 						Toast.makeText(getApplicationContext(), "code error", Toast.LENGTH_LONG).show();
@@ -156,7 +156,7 @@ public class MainActivity extends Activity
 	}
 	
 	/**
-	 * ÀúÀåµÈ ÅäÅ«À» Á¦°ÅÇÏ´Â ¹öÆ°ÀÔ´Ï´Ù.
+	 * ì €ì¥ëœ í† í°ì„ ì œê±°í•˜ëŠ” ë²„íŠ¼ì…ë‹ˆë‹¤.
 	 */
 	private void initDeleteCacheDataButton()
 	{
@@ -165,9 +165,9 @@ public class MainActivity extends Activity
 			
 			@Override
 			public void onClick(View v) {
-				//ÀúÀåµÈ µ¥ÀÌÅÍ »èÁ¦
+				//ì €ì¥ëœ ë°ì´í„° ì‚­ì œ
 				PrefService.getInstance().removeAllPreferences();
-				Toast.makeText(getApplicationContext(), "µ¥ÀÌÅÍ°¡ »èÁ¦ µÇ¾ú½À´Ï´Ù", Toast.LENGTH_LONG).show();
+				Toast.makeText(getApplicationContext(), "ë°ì´í„°ê°€ ì‚­ì œ ë˜ì—ˆìŠµë‹ˆë‹¤", Toast.LENGTH_LONG).show();
 			}
 		});
 	}

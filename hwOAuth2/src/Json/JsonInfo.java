@@ -1,8 +1,8 @@
 package Json;
 
 /**
- * Json ¹®ÀÚ¿­¿¡¼­ ¿øÇÏ´Â µ¥ÀÌÅÍ¸¦ GetÇÏ±â À§ÇÑ Key°ªµéÀÇ Å¬·¡½ºÀÔ´Ï´Ù.
- * @author ½Åµ¿È¯
+ * Json ë¬¸ìžì—´ì—ì„œ ì›í•˜ëŠ” ë°ì´í„°ë¥¼ Getí•˜ê¸° ìœ„í•œ Keyê°’ë“¤ì˜ í´ëž˜ìŠ¤ìž…ë‹ˆë‹¤.
+ * @author ì‹ ë™í™˜
  */
 public class JsonInfo {
 	

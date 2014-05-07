@@ -5,8 +5,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * JSON ¹®ÀÚ¿­À» ÆÄ½ÌÇÏ´Â Å¬·¡½ºÀÔ´Ï´Ù.
- * @author ½Åµ¿È¯
+ * JSON ë¬¸ìì—´ì„ íŒŒì‹±í•˜ëŠ” í´ë˜ìŠ¤ì…ë‹ˆë‹¤.
+ * @author ì‹ ë™í™˜
  */
 public class JsonParser
 {
@@ -18,7 +18,7 @@ public class JsonParser
 		
 		try
 		{
-			//¹®ÀÚ¿­¿¡¼­ name, email, picture µ¥ÀÌÅÍ »Ì¾Æ³¿.
+			//ë¬¸ìì—´ì—ì„œ name, email, picture ë°ì´í„° ë½‘ì•„ëƒ„.
 			json = new JSONObject(str);
 			jsonResult[0] = json.get(JsonInfo.JSON_USERINFO_NAME);
 			jsonResult[1] = json.get(JsonInfo.JSON_USERINFO_EMAIL);
@@ -50,7 +50,7 @@ public class JsonParser
 				{
 					for(int j = 0; j < jsonName.length; j++)
 					{
-						//TITLE, ID, SELFLINK Á¤º¸¸¦ ÀúÀå
+						//TITLE, ID, SELFLINK ì •ë³´ë¥¼ ì €ì¥
 						parseredData[i][j] = json.getString(jsonName[j]);
 					}
 				}

@@ -21,12 +21,12 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 
 /**
- * Oauth2Info Å¬·¡½ºÀÇ Á¤º¸µéÀ» ÀÌ¿ëÇÏ¿© °¢Á¾ Oauth2 ¼­ºñ½ºµéÀ» Á¦°øÇÕ´Ï´Ù.
- * @author ½Åµ¿È¯
+ * Oauth2Info í´ë˜ìŠ¤ì˜ ì •ë³´ë“¤ì„ ì´ìš©í•˜ì—¬ ê°ì¢… Oauth2 ì„œë¹„ìŠ¤ë“¤ì„ ì œê³µí•©ë‹ˆë‹¤.
+ * @author ì‹ ë™í™˜
  */
 public class Oauth2Service 
 {
-	//AccessToken°ú CredentialÀ» Å¬·¡½º ³»¿¡¼­ ÀÚÀ¯·Ó°Ô ¾µ¼ö ÀÖµµ·Ï ÇÏ¿´½À´Ï´Ù.
+	//AccessTokenê³¼ Credentialì„ í´ë˜ìŠ¤ ë‚´ì—ì„œ ììœ ë¡­ê²Œ ì“¸ìˆ˜ ìˆë„ë¡ í•˜ì˜€ìŠµë‹ˆë‹¤.
 	private GoogleCredential _credential;
 	private String _accessToken;
 	
@@ -49,8 +49,8 @@ public class Oauth2Service
 	}
 	
 	/**
-	 * Á¢±Ù ÄÚµå¸¦ ¾ò¾î³»±â À§ÇÑ Url ÁÖ¼Ò¸¦ ¸¸µì´Ï´Ù.
-	 * @return Á¢±Ù code
+	 * ì ‘ê·¼ ì½”ë“œë¥¼ ì–»ì–´ë‚´ê¸° ìœ„í•œ Url ì£¼ì†Œë¥¼ ë§Œë“­ë‹ˆë‹¤.
+	 * @return ì ‘ê·¼ code
 	 */
 	public String getAuthorizationUrl()
 	{
@@ -64,9 +64,9 @@ public class Oauth2Service
 	}
 	
 	/**
-	 * code¸¦ ÀÌ¿ëÇØ CredentialÀ» ¸¸µé¾î³À´Ï´Ù.
-	 * @param code accessTokenÀ» ¹Ş±â À§ÇØ ÇÊ¿äÇÑ code
-	 * @return ÅäÅ« Á¤º¸°¡ ÀúÀåµÈ Credential
+	 * codeë¥¼ ì´ìš©í•´ Credentialì„ ë§Œë“¤ì–´ëƒ…ë‹ˆë‹¤.
+	 * @param code accessTokenì„ ë°›ê¸° ìœ„í•´ í•„ìš”í•œ code
+	 * @return í† í° ì •ë³´ê°€ ì €ì¥ëœ Credential
 	 */
 	public GoogleCredential codeToCredential(String code)
 	{
@@ -76,7 +76,7 @@ public class Oauth2Service
 	}
 	
 	/**
-	 * accessTokenÀÌ ÀÌ¹Ì Á¸ÀçÇÒ ¶§ CredentialÀ» ¸¸µå´Â ÇÔ¼öÀÔ´Ï´Ù.
+	 * accessTokenì´ ì´ë¯¸ ì¡´ì¬í•  ë•Œ Credentialì„ ë§Œë“œëŠ” í•¨ìˆ˜ì…ë‹ˆë‹¤.
 	 */
 	public void makeCredential()
 	{
@@ -93,9 +93,9 @@ public class Oauth2Service
 	}
 	
 	/**
-	 * Google¿¡¼­ ¾ò¾î³½ TokenÀ» ÀÌ¿ëÇÏ¿© CredentialÀ» ¸¸µì´Ï´Ù.
-	 * @param response Á¢±Ù ÄÚµå¸¦ ÀÌ¿ëÇØ ±¸±Û·Î ºÎÅÍ ¾òÀº µ¥ÀÌÅÍ. ÅäÅ« Á¤º¸°¡ ÀúÀåµÇ ÀÖÀ½.
-	 * @return ÅäÅ« Á¤º¸°¡ ÀúÀåµÈ Credential
+	 * Googleì—ì„œ ì–»ì–´ë‚¸ Tokenì„ ì´ìš©í•˜ì—¬ Credentialì„ ë§Œë“­ë‹ˆë‹¤.
+	 * @param response ì ‘ê·¼ ì½”ë“œë¥¼ ì´ìš©í•´ êµ¬ê¸€ë¡œ ë¶€í„° ì–»ì€ ë°ì´í„°. í† í° ì •ë³´ê°€ ì €ì¥ë˜ ìˆìŒ.
+	 * @return í† í° ì •ë³´ê°€ ì €ì¥ëœ Credential
 	 */
 	public GoogleCredential makeCredential(GoogleTokenResponse response)
 	{
@@ -113,9 +113,9 @@ public class Oauth2Service
 	}
 	
 	/**
-	 * Á¢±Ù ÄÚµå¸¦ ÀÌ¿ëÇÏ¿© ÅäÅ«À» ¾ò¾î³»´Â ÇÔ¼öÀÔ´Ï´Ù.
-	 * @param code Á¢±Ù ÄÚµå
-	 * @return ÄÚµå¸¦ ÀÌ¿ëÇØ ¾ò¾î³½ ÅäÅ«Á¤º¸µé
+	 * ì ‘ê·¼ ì½”ë“œë¥¼ ì´ìš©í•˜ì—¬ í† í°ì„ ì–»ì–´ë‚´ëŠ” í•¨ìˆ˜ì…ë‹ˆë‹¤.
+	 * @param code ì ‘ê·¼ ì½”ë“œ
+	 * @return ì½”ë“œë¥¼ ì´ìš©í•´ ì–»ì–´ë‚¸ í† í°ì •ë³´ë“¤
 	 */
 	public GoogleTokenResponse accessTokenRequest(String code)
 	{
@@ -138,9 +138,9 @@ public class Oauth2Service
 	}
 	
 	/**
-	 * ³×Æ®¿öÅ© °ü·Ã ÀÛ¾÷Àº ¸ŞÀÎ ½º·¹µå¿¡¼­ ÁøÇàÇÏ¸é ¾ÈµÇ±â ¶§¹®¿¡ AsyncTask¸¦ ÀÌ¿ëÇÕ´Ï´Ù.</br>
-	 * ÄÚµå¸¦ ÀÌ¿ëÇØ ÅäÅ« Á¤º¸µéÀ» ¾ò¾î³»´Â Å¬·¡½ºÀÔ´Ï´Ù.
-	 * @author ½Åµ¿È¯
+	 * ë„¤íŠ¸ì›Œí¬ ê´€ë ¨ ì‘ì—…ì€ ë©”ì¸ ìŠ¤ë ˆë“œì—ì„œ ì§„í–‰í•˜ë©´ ì•ˆë˜ê¸° ë•Œë¬¸ì— AsyncTaskë¥¼ ì´ìš©í•©ë‹ˆë‹¤.</br>
+	 * ì½”ë“œë¥¼ ì´ìš©í•´ í† í° ì •ë³´ë“¤ì„ ì–»ì–´ë‚´ëŠ” í´ë˜ìŠ¤ì…ë‹ˆë‹¤.
+	 * @author ì‹ ë™í™˜
 	 */
 	private class AccessTokenRequest extends AsyncTask<String, Void, GoogleTokenResponse>
 	{
@@ -182,10 +182,10 @@ public class Oauth2Service
 	}
 	
 	/**
-	 * ÅäÅ«(Credential)À» ÀÌ¿ëÇØ ±¸±Û ¼­ºñ½º¸¦ ÀÌ¿ëÇÏ´Â ÇÔ¼öÀÔ´Ï´Ù.</br>
-	 * Å¬·¡½º ³»¿¡ ÀÖ´Â CredentialÀ» ÀÌ¿ëÇÏ´Â ÇÔ¼öÀÔ´Ï´Ù.
-	 * @param endPointUrl Á¢±ÙÇÒ url ÁÖ¼Ò
-	 * @return ±¸±Û·Î ºÎÅÍ Àü¼Û ¹ŞÀº ¹®ÀÚ¿­
+	 * í† í°(Credential)ì„ ì´ìš©í•´ êµ¬ê¸€ ì„œë¹„ìŠ¤ë¥¼ ì´ìš©í•˜ëŠ” í•¨ìˆ˜ì…ë‹ˆë‹¤.</br>
+	 * í´ë˜ìŠ¤ ë‚´ì— ìˆëŠ” Credentialì„ ì´ìš©í•˜ëŠ” í•¨ìˆ˜ì…ë‹ˆë‹¤.
+	 * @param endPointUrl ì ‘ê·¼í•  url ì£¼ì†Œ
+	 * @return êµ¬ê¸€ë¡œ ë¶€í„° ì „ì†¡ ë°›ì€ ë¬¸ìì—´
 	 */
 	public String accessProtectedResource(String endPointUrl)
 	{
@@ -208,11 +208,11 @@ public class Oauth2Service
 	}
 	
 	/**
-	 * ÅäÅ«(Credential)À» ÀÌ¿ëÇØ ±¸±Û ¼­ºñ½º¸¦ ÀÌ¿ëÇÏ´Â ÇÔ¼öÀÔ´Ï´Ù.</br>
-	 * CredentialÀ» ¸Å°³º¯¼ö·Î ¹Ş¾Æ¼­ ÀÌ¿ëÇÏ´Â ÇÔ¼öÀÔ´Ï´Ù.
-	 * @param credential ÅäÅ« Á¤º¸µéÀÌ ÀúÀåµÇÀÖ´Â Credential
-	 * @param endPointUrl Á¢±ÙÇÒ url ÁÖ¼Ò
-	 * @return ±¸±Û·Î ºÎÅÍ Àü¼Û¹ŞÀº ¹®ÀÚ¿­ Á¤º¸
+	 * í† í°(Credential)ì„ ì´ìš©í•´ êµ¬ê¸€ ì„œë¹„ìŠ¤ë¥¼ ì´ìš©í•˜ëŠ” í•¨ìˆ˜ì…ë‹ˆë‹¤.</br>
+	 * Credentialì„ ë§¤ê°œë³€ìˆ˜ë¡œ ë°›ì•„ì„œ ì´ìš©í•˜ëŠ” í•¨ìˆ˜ì…ë‹ˆë‹¤.
+	 * @param credential í† í° ì •ë³´ë“¤ì´ ì €ì¥ë˜ìˆëŠ” Credential
+	 * @param endPointUrl ì ‘ê·¼í•  url ì£¼ì†Œ
+	 * @return êµ¬ê¸€ë¡œ ë¶€í„° ì „ì†¡ë°›ì€ ë¬¸ìì—´ ì •ë³´
 	 */
 	public String accessProtectedResource(GoogleCredential credential, String endPointUrl)
 	{
@@ -235,9 +235,9 @@ public class Oauth2Service
 	}
 	
 	/**
-	 * ³×Æ®¿öÅ© °ü·Ã ÀÛ¾÷Àº ¸ŞÀÎ ½º·¹µå¿¡¼­ ÁøÇàÇÏ¸é ¾ÈµÇ±â ¶§¹®¿¡ AsyncTask¸¦ ÀÌ¿ëÇÕ´Ï´Ù.</br>
-	 * endPoint url ÁÖ¼Ò¸¦ ÀÌ¿ëÇÏ¿© ±¸±Û·Î ºÎÅÍ µ¥ÀÌÅÍ¸¦ ¾ò¾î³»´Â Å¬·¡½ºÀÔ´Ï´Ù.
-	 * @author ½Åµ¿È¯
+	 * ë„¤íŠ¸ì›Œí¬ ê´€ë ¨ ì‘ì—…ì€ ë©”ì¸ ìŠ¤ë ˆë“œì—ì„œ ì§„í–‰í•˜ë©´ ì•ˆë˜ê¸° ë•Œë¬¸ì— AsyncTaskë¥¼ ì´ìš©í•©ë‹ˆë‹¤.</br>
+	 * endPoint url ì£¼ì†Œë¥¼ ì´ìš©í•˜ì—¬ êµ¬ê¸€ë¡œ ë¶€í„° ë°ì´í„°ë¥¼ ì–»ì–´ë‚´ëŠ” í´ë˜ìŠ¤ì…ë‹ˆë‹¤.
+	 * @author ì‹ ë™í™˜
 	 */
 	private class AccessProtectedResource extends AsyncTask<Object, Void, String>
 	{
@@ -250,7 +250,7 @@ public class Oauth2Service
 			httpTransport = new NetHttpTransport();
 		}
 
-		//ObjectÀÇ Ã¹¹øÂ° µ¥ÀÌÅÍ´Â Credential, µÎ¹øÂ° µ¥ÀÌÅÍ´Â EndPointUrl ÀÔ´Ï´Ù.
+		//Objectì˜ ì²«ë²ˆì§¸ ë°ì´í„°ëŠ” Credential, ë‘ë²ˆì§¸ ë°ì´í„°ëŠ” EndPointUrl ì…ë‹ˆë‹¤.
 		@Override
 		protected String doInBackground(Object... params) 
 		{
@@ -277,9 +277,9 @@ public class Oauth2Service
 	}
 	
 	/**
-	 * ÇöÀç »ç¿ëÇÏ°í ÀÖ´Â ¼­ºñ½ºÀÇ Å¬·¡½º¸¦ ¹İÈ¯ÇÕ´Ï´Ù.</br>
-	 * ¹İÈ¯µÈ Å¬·¡½º·Î »õ·Î¿î ¾×Æ¼ºñÆ¼¸¦ »ı¼ºÇÕ´Ï´Ù.
-	 * @return ÇöÀç »ç¿ëÇÏ°í ÀÖ´Â ¼­ºñ½ºÀÇ Å¬·¡½º
+	 * í˜„ì¬ ì‚¬ìš©í•˜ê³  ìˆëŠ” ì„œë¹„ìŠ¤ì˜ í´ë˜ìŠ¤ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.</br>
+	 * ë°˜í™˜ëœ í´ë˜ìŠ¤ë¡œ ìƒˆë¡œìš´ ì•¡í‹°ë¹„í‹°ë¥¼ ìƒì„±í•©ë‹ˆë‹¤.
+	 * @return í˜„ì¬ ì‚¬ìš©í•˜ê³  ìˆëŠ” ì„œë¹„ìŠ¤ì˜ í´ë˜ìŠ¤
 	 */
 	public Class<?> getServiceClass()
 	{
@@ -290,35 +290,35 @@ public class Oauth2Service
 	}
 	
 	/**
-	 * ¼±ÅÃµÈ ¼­ºñ½º·Î ¼¼ÆÃÇÏ´Â ÀÛ¾÷À» ÇÏ´Â ÇÔ¼öÀÔ´Ï´Ù.</br>
-	 * ¼­ºñ½º º°·Î ³ª´µ¾îÁ® ÀÖÀ¸¸ç, ÀúÀåµÈ accessTokenÀ» ÀĞ¾î¿É´Ï´Ù.
-	 * @param service ¼±ÅÃµÈ ¼­ºñ½º
+	 * ì„ íƒëœ ì„œë¹„ìŠ¤ë¡œ ì„¸íŒ…í•˜ëŠ” ì‘ì—…ì„ í•˜ëŠ” í•¨ìˆ˜ì…ë‹ˆë‹¤.</br>
+	 * ì„œë¹„ìŠ¤ ë³„ë¡œ ë‚˜ë‰˜ì–´ì ¸ ìˆìœ¼ë©°, ì €ì¥ëœ accessTokenì„ ì½ì–´ì˜µë‹ˆë‹¤.
+	 * @param service ì„ íƒëœ ì„œë¹„ìŠ¤
 	 */
 	public void setSelectService(Service service)
 	{
-		//»ç¿ëÀÚ Á¤º¸ ¼­ºñ½º¸¦ ¼±ÅÃÇÏ¿´À» °æ¿ì
+		//ì‚¬ìš©ì ì •ë³´ ì„œë¹„ìŠ¤ë¥¼ ì„ íƒí•˜ì˜€ì„ ê²½ìš°
 		if(service == Oauth2Info.Service.USERINFO)
 		{
-			//ÇöÀç »ç¿ëÁßÀÎ ¼­ºñ½º¸¦ »ç¿ëÀÚ Á¤º¸·Î ¼¼ÆÃ.
-			//EndPointUrl, Scope Á¤º¸¸¦ »ç¿ëÀÚ Á¤º¸ ¼­ºñ½º¸¦ ÀÌ¿ëÇÒ ¼ö ÀÖ°Ô²û ¼¼ÆÃÇÔ.
+			//í˜„ì¬ ì‚¬ìš©ì¤‘ì¸ ì„œë¹„ìŠ¤ë¥¼ ì‚¬ìš©ì ì •ë³´ë¡œ ì„¸íŒ….
+			//EndPointUrl, Scope ì •ë³´ë¥¼ ì‚¬ìš©ì ì •ë³´ ì„œë¹„ìŠ¤ë¥¼ ì´ìš©í•  ìˆ˜ ìˆê²Œë” ì„¸íŒ…í•¨.
 			Oauth2Info.getInstance().setSelectService(Oauth2Info.Service.USERINFO);			
 			Oauth2Info.getInstance().setENDPOINT_URL(Oauth2Info.getInstance().getENDPOINT_UserInfo());
 			Oauth2Info.getInstance().setSCOPE(Oauth2Info.getInstance().getSCOPE_UserInfo());
 		}
-		//Tasks ¼­ºñ½º¸¦ ¼±ÅÃÇÏ¿´À» °æ¿ì
+		//Tasks ì„œë¹„ìŠ¤ë¥¼ ì„ íƒí•˜ì˜€ì„ ê²½ìš°
 		else if(service == Oauth2Info.Service.TASKS)
 		{
 			Oauth2Info.getInstance().setSelectService(Oauth2Info.Service.TASKS);
 			Oauth2Info.getInstance().setENDPOINT_URL(Oauth2Info.getInstance().getENDPOINT_Tasks());
 			Oauth2Info.getInstance().setSCOPE(Oauth2Info.getInstance().getSCOPE_Tasks());
 		}
-		//ÀúÀåµÇ¾îÀÖ´Â accessTokenÀ» ÀĞ¾î¿Í¼­ Å¬·¡½º³»ÀÇ _accessTokenº¯¼ö¿¡ ÀúÀåÇÔ.
-		//ÀúÀåµÇ¾îÀÖ´Â ÅäÅ«ÀÌ ¾øÀ» °æ¿ì "token_is_not_exist" ¹®ÀÚ¿­ÀÌ ÀúÀåµÊ.
+		//ì €ì¥ë˜ì–´ìˆëŠ” accessTokenì„ ì½ì–´ì™€ì„œ í´ë˜ìŠ¤ë‚´ì˜ _accessTokenë³€ìˆ˜ì— ì €ì¥í•¨.
+		//ì €ì¥ë˜ì–´ìˆëŠ” í† í°ì´ ì—†ì„ ê²½ìš° "token_is_not_exist" ë¬¸ìì—´ì´ ì €ì¥ë¨.
 		set_accessToken(loadAccessToken());
 	}
 	
 	/**
-	 * ÅäÅ«À» ÀúÀåÇÏ´Â ÇÔ¼ö. ¼­ºñ½º º°·Î ÅäÅ«À» µû·Î ÀúÀåÇÕ´Ï´Ù.
+	 * í† í°ì„ ì €ì¥í•˜ëŠ” í•¨ìˆ˜. ì„œë¹„ìŠ¤ ë³„ë¡œ í† í°ì„ ë”°ë¡œ ì €ì¥í•©ë‹ˆë‹¤.
 	 */
 	public void storeToken()
 	{
@@ -335,8 +335,8 @@ public class Oauth2Service
 	}
 
 	/**
-	 * ÅäÅ«À» ÀĞ¾î¿À´Â ÇÔ¼ö. ¼­ºñ½º º°·Î ÅäÅ«À» µû·Î ÀĞ¾î¿É´Ï´Ù.
-	 * @return ¹®ÀÚ¿­À» ¹İÈ¯ÇÏ´Âµ¥, ÅäÅ«ÀÌ Á¸ÀçÇÒ °æ¿ì ÅäÅ«À» ¹İÈ¯ÇÏ°í, ÅäÅ«ÀÌ Á¸ÀçÇÏÁö ¾ÊÀ»°æ¿ì "token_is_not_exist" ¹®ÀÚ¿­À» ¹İÈ¯ÇÕ´Ï´Ù.
+	 * í† í°ì„ ì½ì–´ì˜¤ëŠ” í•¨ìˆ˜. ì„œë¹„ìŠ¤ ë³„ë¡œ í† í°ì„ ë”°ë¡œ ì½ì–´ì˜µë‹ˆë‹¤.
+	 * @return ë¬¸ìì—´ì„ ë°˜í™˜í•˜ëŠ”ë°, í† í°ì´ ì¡´ì¬í•  ê²½ìš° í† í°ì„ ë°˜í™˜í•˜ê³ , í† í°ì´ ì¡´ì¬í•˜ì§€ ì•Šì„ê²½ìš° "token_is_not_exist" ë¬¸ìì—´ì„ ë°˜í™˜í•©ë‹ˆë‹¤.
 	 */
 	public String loadAccessToken()
 	{
@@ -352,7 +352,7 @@ public class Oauth2Service
 		return PrefService.PREF_TOKEN_IS_NOT_EXIST;
 	}
 	
-	//get, set ÇÔ¼öµé ÀÔ´Ï´Ù.
+	//get, set í•¨ìˆ˜ë“¤ ì…ë‹ˆë‹¤.
 	public GoogleCredential get_credential() {return _credential;}
 	public String get_accessToken()          {return _accessToken;}
 

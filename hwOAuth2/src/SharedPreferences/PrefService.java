@@ -5,24 +5,24 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 /**
- * ÅäÅ«À» ÀúÀåÇÏ±â À§ÇØ ¸¸µç Å¬·¡½ºÀÔ´Ï´Ù.</br>
- * ´ÙÀ½ÀÇ »çÀÌÆ®¸¦ Âü°íÇÏ¿© ¸¸µé¾ú½À´Ï´Ù.</br>
+ * í† í°ì„ ì €ì¥í•˜ê¸° ìœ„í•´ ë§Œë“  í´ë˜ìŠ¤ì…ë‹ˆë‹¤.</br>
+ * ë‹¤ìŒì˜ ì‚¬ì´íŠ¸ë¥¼ ì°¸ê³ í•˜ì—¬ ë§Œë“¤ì—ˆìŠµë‹ˆë‹¤.</br>
  * http://muzesong.tistory.com/79</br>
  * http://arabiannight.tistory.com/198</br>
- * @author ½Åµ¿È¯
+ * @author ì‹ ë™í™˜
  */
 public class PrefService
 {
 	private final String PREF_NAME = "token";
 	
-	//ÅäÅ«ÀÌ Á¸ÀçÇÏÁö ¾ÊÀ» ¶§ »ç¿ë ÇÒ ¹®ÀÚ¿­
+	//í† í°ì´ ì¡´ì¬í•˜ì§€ ì•Šì„ ë•Œ ì‚¬ìš© í•  ë¬¸ìì—´
 	public final static String PREF_TOKEN_IS_NOT_EXIST     = "token_is_not_exist";
  
-	//»ç¿ëÀÚ Á¤º¸ ¼­ºñ½º °ü·Ã ÅäÅ«À» ÀÌ¿ëÇÒ ¶§ »ç¿ëÇÒ ¹®ÀÚ¿­
+	//ì‚¬ìš©ì ì •ë³´ ì„œë¹„ìŠ¤ ê´€ë ¨ í† í°ì„ ì´ìš©í•  ë•Œ ì‚¬ìš©í•  ë¬¸ìì—´
 	public final static String PREF_ACCESS_TOKEN_USERINFO  = "access_token_userinfo";
 	public final static String PREF_REFRESH_TOKEN_USERINFO = "refresh_token_userinfo";
 	
-	//Tasks ¼­ºñ½º °ü·Ã ÅäÅ«À» ÀÌ¿ëÇÒ ¶§ »ç¿ëÇÒ ¹®ÀÚ¿­
+	//Tasks ì„œë¹„ìŠ¤ ê´€ë ¨ í† í°ì„ ì´ìš©í•  ë•Œ ì‚¬ìš©í•  ë¬¸ìì—´
 	public final static String PREF_ACCESS_TOKEN_TASKS     = "access_token_tasks";
 	public final static String PREF_REFRESH_TOKEN_TASKS    = "refresh_token_tasks";
      
@@ -46,9 +46,9 @@ public class PrefService
 	}
  
 	/**
-	 * µ¥ÀÌÅÍ¸¦ ÀúÀåÇÔ
-	 * @param key ÀúÀåÇÒ µ¥ÀÌÅÍÀÇ key°ª
-	 * @param value ÀúÀåÇÒ µ¥ÀÌÅÍ
+	 * ë°ì´í„°ë¥¼ ì €ì¥í•¨
+	 * @param key ì €ì¥í•  ë°ì´í„°ì˜ keyê°’
+	 * @param value ì €ì¥í•  ë°ì´í„°
 	 */
 	public void put(String key, String value)
 	{
@@ -60,10 +60,10 @@ public class PrefService
 	}
 
 	/**
-	 * µ¥ÀÌÅÍ¸¦ ÀĞ¾î¿È
-	 * @param key ÀĞ¾î¿Ã µ¥ÀÌÅÍÀÇ key°ª
-	 * @param dftValue Å°°¡ Á¸ÀçÇÏÁö ¾ÊÀ»¶§ »ç¿ëÇÒ µğÆúÆ® µ¥ÀÌÅÍ
-	 * @return ÀĞ¾î¿Â µ¥ÀÌÅÍ or dftValue
+	 * ë°ì´í„°ë¥¼ ì½ì–´ì˜´
+	 * @param key ì½ì–´ì˜¬ ë°ì´í„°ì˜ keyê°’
+	 * @param dftValue í‚¤ê°€ ì¡´ì¬í•˜ì§€ ì•Šì„ë•Œ ì‚¬ìš©í•  ë””í´íŠ¸ ë°ì´í„°
+	 * @return ì½ì–´ì˜¨ ë°ì´í„° or dftValue
 	 */
 	public String getValue(String key, String defValue)
 	{
@@ -80,7 +80,7 @@ public class PrefService
 	}
 	
 	/**
-	 * ¸ğµç µ¥ÀÌÅÍ Á¦°Å
+	 * ëª¨ë“  ë°ì´í„° ì œê±°
 	 */
 	public void removeAllPreferences()
 	{

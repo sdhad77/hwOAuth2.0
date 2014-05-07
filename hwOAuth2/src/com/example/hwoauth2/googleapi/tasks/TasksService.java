@@ -1,8 +1,8 @@
 /*
- * ¾ÆÁ÷ ¹Ì¿Ï¼º »óÅÂÀÌ¸ç, Ãß°¡ °³¹ß ¿¹Á¤ÀÔ´Ï´Ù.
+ * ì•„ì§ ë¯¸ì™„ì„± ìƒíƒœì´ë©°, ì¶”ê°€ ê°œë°œ ì˜ˆì •ì…ë‹ˆë‹¤.
  * com.google.api.services.tasks.model.Tasks
  * com.google.api.services.tasks.Tasks
- * ÀÌ¸§ÀÌ °ãÃÄ¼­ ¾Æ·¡ÀÇ °ÍÀ» importÇÏ¿´°í, À§ÀÇ Tasks´Â ±×¶§±×¶§ °æ·Î¸¦ ¼³Á¤ÇÏ´Â ¹æ½ÄÀ¸·Î »ç¿ëÇÏ¿´½À´Ï´Ù.
+ * ì´ë¦„ì´ ê²¹ì³ì„œ ì•„ë˜ì˜ ê²ƒì„ importí•˜ì˜€ê³ , ìœ„ì˜ TasksëŠ” ê·¸ë•Œê·¸ë•Œ ê²½ë¡œë¥¼ ì„¤ì •í•˜ëŠ” ë°©ì‹ìœ¼ë¡œ ì‚¬ìš©í•˜ì˜€ìŠµë‹ˆë‹¤.
 */
 
 package com.example.hwoauth2.googleapi.tasks;
@@ -36,12 +36,12 @@ import com.google.api.services.tasks.model.TaskList;
 import com.google.api.services.tasks.model.TaskLists;
 
 /**
- * ±¸±ÛÀÇ Tasks ¼­ºñ½º¸¦ ÀÌ¿ëÇÏ±â À§ÇÑ Å¬·¡½ºÀÔ´Ï´Ù.
- * @author ½Åµ¿È¯
+ * êµ¬ê¸€ì˜ Tasks ì„œë¹„ìŠ¤ë¥¼ ì´ìš©í•˜ê¸° ìœ„í•œ í´ë˜ìŠ¤ì…ë‹ˆë‹¤.
+ * @author ì‹ ë™í™˜
  */
 public class TasksService extends Activity
 {	
-	//¸®½º³ÊµéÀÌ tasksListÀÇ ID°ªÀ» »ç¿ëÇØ¾ß ÇÏ´Â °æ¿ì°¡ Á¸ÀçÇÏ¿© º¯¼ö·Î ÀúÀåÇÏ°í »ç¿ëÇÏ±â·Î ÇÏ¿´½À´Ï´Ù.
+	//ë¦¬ìŠ¤ë„ˆë“¤ì´ tasksListì˜ IDê°’ì„ ì‚¬ìš©í•´ì•¼ í•˜ëŠ” ê²½ìš°ê°€ ì¡´ì¬í•˜ì—¬ ë³€ìˆ˜ë¡œ ì €ì¥í•˜ê³  ì‚¬ìš©í•˜ê¸°ë¡œ í•˜ì˜€ìŠµë‹ˆë‹¤.
 	private String _selectedTaskListID;
 
 	private static TasksService _instance;
@@ -66,9 +66,9 @@ public class TasksService extends Activity
 	}
 	
 	/**
-	 * ÃÊ±âÈ­¸¦ ÇÏ±â À§ÇÑ ÇÔ¼öÀÔ´Ï´Ù.</br>
-	 * taskListÀÇ ¸ñ·ÏÀ» ¹Ş¾Æ¿Í¼­ Spinner¸¦ ¸¸µç µÚ</br>
-	 * ÇÒ ÀÏ Ãß°¡ ¹öÆ°, »õ·Î°íÄ§ ¹öÆ°À» ÃÊ±âÈ­ ÇÕ´Ï´Ù.
+	 * ì´ˆê¸°í™”ë¥¼ í•˜ê¸° ìœ„í•œ í•¨ìˆ˜ì…ë‹ˆë‹¤.</br>
+	 * taskListì˜ ëª©ë¡ì„ ë°›ì•„ì™€ì„œ Spinnerë¥¼ ë§Œë“  ë’¤</br>
+	 * í•  ì¼ ì¶”ê°€ ë²„íŠ¼, ìƒˆë¡œê³ ì¹¨ ë²„íŠ¼ì„ ì´ˆê¸°í™” í•©ë‹ˆë‹¤.
 	 */
 	private void init()
 	{
@@ -78,7 +78,7 @@ public class TasksService extends Activity
 	}
 	
 	/**
-	 * ÇÒ ÀÏÀ» Ãß°¡ÇÏ´Â ¹öÆ°ÀÔ´Ï´Ù.
+	 * í•  ì¼ì„ ì¶”ê°€í•˜ëŠ” ë²„íŠ¼ì…ë‹ˆë‹¤.
 	 */
 	private void initAddTaskButton()
 	{
@@ -88,14 +88,14 @@ public class TasksService extends Activity
 			@Override
 			public void onClick(View v)
 			{
-				Toast.makeText(getApplicationContext(), "ÇÒ ÀÏÀÌ Ãß°¡ µÇ¾ú½À´Ï´Ù", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), "í•  ì¼ì´ ì¶”ê°€ ë˜ì—ˆìŠµë‹ˆë‹¤", Toast.LENGTH_SHORT).show();
 				addTask(get_selectedTaskListID());
 			}
 		});
 	}
 	
 	/**
-	 * »õ·Î°íÄ§À» ÇÏ´Â ¹öÆ°ÀÔ´Ï´Ù.
+	 * ìƒˆë¡œê³ ì¹¨ì„ í•˜ëŠ” ë²„íŠ¼ì…ë‹ˆë‹¤.
 	 */
 	private void initUpdateButton()
 	{
@@ -111,14 +111,14 @@ public class TasksService extends Activity
 	}
 	
 	/**
-	 * ½ºÇÇ³ÊÀÇ taskLists Áß¿¡¼­ ¼±ÅÃµÈ ÇÏ³ªÀÇ taskListÀÇ taskµéÀ» ¸®½ºÆ®ºä·Î º¸¿©ÁÖ±â À§ÇÑ ÇÔ¼öÀÔ´Ï´Ù.
-	 * @param tasks ÇöÀç ½ºÇÇ³Ê¿¡¼­ ¼±ÅÃµÇ¾îÁ®ÀÖ´Â taskList
+	 * ìŠ¤í”¼ë„ˆì˜ taskLists ì¤‘ì—ì„œ ì„ íƒëœ í•˜ë‚˜ì˜ taskListì˜ taskë“¤ì„ ë¦¬ìŠ¤íŠ¸ë·°ë¡œ ë³´ì—¬ì£¼ê¸° ìœ„í•œ í•¨ìˆ˜ì…ë‹ˆë‹¤.
+	 * @param tasks í˜„ì¬ ìŠ¤í”¼ë„ˆì—ì„œ ì„ íƒë˜ì–´ì ¸ìˆëŠ” taskList
 	 */
 	private void initTasksListListView(com.google.api.services.tasks.model.Tasks tasks)
 	{	
 		ArrayList<String> arrayList = new ArrayList<String>();
 		
-		//taskµéÀÇ ÀÌ¸§¸¸ µû·Î ÀúÀå
+		//taskë“¤ì˜ ì´ë¦„ë§Œ ë”°ë¡œ ì €ì¥
 		for (Task task : tasks.getItems()) arrayList.add(task.getTitle());
 		
 		final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
@@ -133,22 +133,22 @@ public class TasksService extends Activity
        		@Override
        		public void onItemClick(AdapterView<?> parent, View view, int position, long id)
        		{
-       			//¼±ÅÃµÈ ÇÒ ÀÏÀÇ Á¦¸ñÀ» Åä½ºÆ®·Î º¸¿©ÁÜ.
-       			//»õ·Î¿î ¾×Æ¼ºñÆ¼¸¦ ¸¸µé¾î¼­ ÇÒ ÀÏÀ» ¼öÁ¤ÇÒ ¼ö ÀÖ°Ô º¯°æÇØ¾ß ÇÕ´Ï´Ù.
+       			//ì„ íƒëœ í•  ì¼ì˜ ì œëª©ì„ í† ìŠ¤íŠ¸ë¡œ ë³´ì—¬ì¤Œ.
+       			//ìƒˆë¡œìš´ ì•¡í‹°ë¹„í‹°ë¥¼ ë§Œë“¤ì–´ì„œ í•  ì¼ì„ ìˆ˜ì •í•  ìˆ˜ ìˆê²Œ ë³€ê²½í•´ì•¼ í•©ë‹ˆë‹¤.
        			Toast.makeText(getBaseContext(), adapter.getItem(position).toString(), Toast.LENGTH_SHORT).show();
        		}
        	});
 	}
 	
 	/**
-	 * taskLists¸¦ ½ºÇÇ³Ê·Î ¸¸µå´Â ÇÔ¼öÀÔ´Ï´Ù.
-	 * @param taskLists ÇÒ ÀÏ ¸ñ·ÏµéÀÔ´Ï´Ù.
+	 * taskListsë¥¼ ìŠ¤í”¼ë„ˆë¡œ ë§Œë“œëŠ” í•¨ìˆ˜ì…ë‹ˆë‹¤.
+	 * @param taskLists í•  ì¼ ëª©ë¡ë“¤ì…ë‹ˆë‹¤.
 	 */
 	private void initTaskListsSpinner(final TaskLists taskLists)
 	{
 		ArrayList<String> arrayList = new ArrayList<String>();
 		
-		//ÇÒ ÀÏ ¸ñ·Ïµé¿¡¼­ °¢ ¸ñ·ÏÀÇ Á¦¸ñ¸¸ µû·Î ÀúÀåÇÕ´Ï´Ù.
+		//í•  ì¼ ëª©ë¡ë“¤ì—ì„œ ê° ëª©ë¡ì˜ ì œëª©ë§Œ ë”°ë¡œ ì €ì¥í•©ë‹ˆë‹¤.
        	for (TaskList taskList : taskLists.getItems()) arrayList.add(taskList.getTitle());
        	
 		final ArrayAdapter<String> adapterSpinner = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arrayList);
@@ -159,17 +159,17 @@ public class TasksService extends Activity
 		spinner.setVisibility(View.VISIBLE);
 		spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 
-			//´Ù¸¥ ÇÒ ÀÏ ¸ñ·ÏÀ» º¸±â À§ÇØ ½ºÇÇ³ÊÀÇ select¸¦ º¯°æÇÒ ¶§ ÀÔ´Ï´Ù.
+			//ë‹¤ë¥¸ í•  ì¼ ëª©ë¡ì„ ë³´ê¸° ìœ„í•´ ìŠ¤í”¼ë„ˆì˜ selectë¥¼ ë³€ê²½í•  ë•Œ ì…ë‹ˆë‹¤.
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
 			{
-				//¼±ÅÃµÈ ÇÒ ÀÏ ¸ñ·ÏÀÌ ¾î´À°ÍÀÎÁö Ã£½À´Ï´Ù.
+				//ì„ íƒëœ í•  ì¼ ëª©ë¡ì´ ì–´ëŠê²ƒì¸ì§€ ì°¾ìŠµë‹ˆë‹¤.
 				for (TaskList taskList : taskLists.getItems())
 				{
-					//Ã£¾ÒÀ¸¸é
+					//ì°¾ì•˜ìœ¼ë©´
 					if(taskList.getTitle() == adapterSpinner.getItem(position))
 					{
-						//Å¬·¡½º ³»¿¡¼­ »ç¿ëÇÏ¸é ·ÎÄÃ º¯¼ö¿¡ ÀúÀåÇÏ°í, ¹Ù²ï ÇÒ ÀÏ ¸ñ·ÏÀ» º¸¿©Áİ´Ï´Ù.
+						//í´ë˜ìŠ¤ ë‚´ì—ì„œ ì‚¬ìš©í•˜ë©´ ë¡œì»¬ ë³€ìˆ˜ì— ì €ì¥í•˜ê³ , ë°”ë€ í•  ì¼ ëª©ë¡ì„ ë³´ì—¬ì¤ë‹ˆë‹¤.
 						set_selectedTaskListID(taskList.getId());
 						initTasksListListView(getTasksList(get_selectedTaskListID()));
 					}
@@ -184,8 +184,8 @@ public class TasksService extends Activity
 	}
 	
 	/**
-	 * ÇÒ ÀÏ ¸ñ·ÏµéÀ» ¾ò¾î¿À´Â ÇÔ¼öÀÔ´Ï´Ù.
-	 * @return ÇÒ ÀÏ ¸ñ·ÏµéÀ» ¹İÈ¯ÇÕ´Ï´Ù.
+	 * í•  ì¼ ëª©ë¡ë“¤ì„ ì–»ì–´ì˜¤ëŠ” í•¨ìˆ˜ì…ë‹ˆë‹¤.
+	 * @return í•  ì¼ ëª©ë¡ë“¤ì„ ë°˜í™˜í•©ë‹ˆë‹¤.
 	 */
 	private TaskLists getTaskLists()
 	{
@@ -193,7 +193,7 @@ public class TasksService extends Activity
 
 		try 
 		{
-			//ÇÒ ÀÏ ¸ñ·ÏÀ» ¹Ş¾Æ¿É´Ï´Ù.
+			//í•  ì¼ ëª©ë¡ì„ ë°›ì•„ì˜µë‹ˆë‹¤.
 			taskLists = new GetTaskLists().execute().get();
 		} 
 		catch (InterruptedException e)
@@ -209,9 +209,9 @@ public class TasksService extends Activity
 	}
 	
 	/**
-	 * ³×Æ®¿öÅ© Ã³¸®ÀÌ±â ¶§¹®¿¡ AsyncTask·Î Ã³¸®ÇÏ¿´½À´Ï´Ù.</br>
-	 * ÇÒ ÀÏ ¸ñ·ÏµéÀ» ¹Ş¾Æ¿À´Â Å¬·¡½º ÀÔ´Ï´Ù.
-	 * @author ½Åµ¿È¯
+	 * ë„¤íŠ¸ì›Œí¬ ì²˜ë¦¬ì´ê¸° ë•Œë¬¸ì— AsyncTaskë¡œ ì²˜ë¦¬í•˜ì˜€ìŠµë‹ˆë‹¤.</br>
+	 * í•  ì¼ ëª©ë¡ë“¤ì„ ë°›ì•„ì˜¤ëŠ” í´ë˜ìŠ¤ ì…ë‹ˆë‹¤.
+	 * @author ì‹ ë™í™˜
 	 */
 	private class GetTaskLists extends AsyncTask<Void, Void, TaskLists>
 	{
@@ -228,7 +228,7 @@ public class TasksService extends Activity
 			TaskLists taskLists = null;
 			try
 			{
-				// ÇÒ ÀÏ ¸ñ·ÏµéÀ» ¹Ş¾Æ¿É´Ï´Ù.
+				// í•  ì¼ ëª©ë¡ë“¤ì„ ë°›ì•„ì˜µë‹ˆë‹¤.
 				taskLists = service.tasklists().list().execute();
 			} 
 			catch (IOException e)
@@ -241,24 +241,24 @@ public class TasksService extends Activity
 	}
 	
 	/**
-	 * ÇÒ ÀÏ ¸ñ·ÏÀ» Ãß°¡ÇÏ´Â ÇÔ¼öÀÔ´Ï´Ù.</br>
-	 * ÇöÀç ÇÒ ÀÏ ¸ñ·ÏÀÇ ÇÒ ÀÏÀÌ ¾øÀ»°æ¿ì(empty) ³Î Æ÷ÀÎÆ® ¿¹¿ÜÃ³¸®°¡ ¹ß»ıÇÏ¿© ÇØ°á ¹æ¾ÈÀ» Ã£°í ÀÖ´Â ÁßÀÔ´Ï´Ù.</br>
-	 * ÇØ°á ¹æ¾ÈÀ» Ã£±â Àü±îÁö´Â ÀÌ ÇÔ¼ö´Â »ç¿ëµÇ¾î¼­´Â ¾ÈµË´Ï´Ù.
+	 * í•  ì¼ ëª©ë¡ì„ ì¶”ê°€í•˜ëŠ” í•¨ìˆ˜ì…ë‹ˆë‹¤.</br>
+	 * í˜„ì¬ í•  ì¼ ëª©ë¡ì˜ í•  ì¼ì´ ì—†ì„ê²½ìš°(empty) ë„ í¬ì¸íŠ¸ ì˜ˆì™¸ì²˜ë¦¬ê°€ ë°œìƒí•˜ì—¬ í•´ê²° ë°©ì•ˆì„ ì°¾ê³  ìˆëŠ” ì¤‘ì…ë‹ˆë‹¤.</br>
+	 * í•´ê²° ë°©ì•ˆì„ ì°¾ê¸° ì „ê¹Œì§€ëŠ” ì´ í•¨ìˆ˜ëŠ” ì‚¬ìš©ë˜ì–´ì„œëŠ” ì•ˆë©ë‹ˆë‹¤.
 	 */
 	private void addTaskList()
 	{
-		//»õ·Î¿î ÇÒ ÀÏ ¸ñ·ÏÀÔ´Ï´Ù.
+		//ìƒˆë¡œìš´ í•  ì¼ ëª©ë¡ì…ë‹ˆë‹¤.
 		TaskList taskList = new TaskList();
-		taskList.setTitle("Å×½ºÆ®ÀÔ´Ï´Ù.");
+		taskList.setTitle("í…ŒìŠ¤íŠ¸ì…ë‹ˆë‹¤.");
 
-		//ÇÒ ÀÏ ¸ñ·ÏÀ» Ãß°¡ÇÕ´Ï´Ù.
+		//í•  ì¼ ëª©ë¡ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 		new AddTaskList().execute(taskList);
 	}
 	
 	/**
-	 * ³×Æ®¿öÅ© Ã³¸®ÀÌ±â ¶§¹®¿¡ AsyncTask·Î Ã³¸®ÇÏ¿´½À´Ï´Ù.</br>
-	 * ÇÒ ÀÏ ¸ñ·ÏÀ» Ãß°¡ÇÏ´Â Å¬·¡½ºÀÔ´Ï´Ù.
-	 * @author ½Åµ¿È¯
+	 * ë„¤íŠ¸ì›Œí¬ ì²˜ë¦¬ì´ê¸° ë•Œë¬¸ì— AsyncTaskë¡œ ì²˜ë¦¬í•˜ì˜€ìŠµë‹ˆë‹¤.</br>
+	 * í•  ì¼ ëª©ë¡ì„ ì¶”ê°€í•˜ëŠ” í´ë˜ìŠ¤ì…ë‹ˆë‹¤.
+	 * @author ì‹ ë™í™˜
 	 */
 	private class AddTaskList extends AsyncTask<TaskList, Void, Void>
 	{
@@ -274,7 +274,7 @@ public class TasksService extends Activity
 			
 			try
 			{
-				//ÇÒ ÀÏ ¸ñ·ÏÀ» Ãß°¡ÇÕ´Ï´Ù.
+				//í•  ì¼ ëª©ë¡ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 				service.tasklists().insert(taskList[0]).execute();
 			} 
 			catch (IOException e)
@@ -287,9 +287,9 @@ public class TasksService extends Activity
 	}
 	
 	/**
-	 * ÇÒ ÀÏ ¸ñ·ÏÀ» °¡Á®¿À´Â ÇÔ¼ö ÀÔ´Ï´Ù.
-	 * @param tasksId °¡Á®¿Ã ÇÒ ÀÏ ¸ñ·ÏÀÇ IDÀÔ´Ï´Ù.
-	 * @return °¡Á®¿Â ÇÒ ÀÏ ¸ñ·ÏÀ» ¹İÈ¯ÇÕ´Ï´Ù.
+	 * í•  ì¼ ëª©ë¡ì„ ê°€ì ¸ì˜¤ëŠ” í•¨ìˆ˜ ì…ë‹ˆë‹¤.
+	 * @param tasksId ê°€ì ¸ì˜¬ í•  ì¼ ëª©ë¡ì˜ IDì…ë‹ˆë‹¤.
+	 * @return ê°€ì ¸ì˜¨ í•  ì¼ ëª©ë¡ì„ ë°˜í™˜í•©ë‹ˆë‹¤.
 	 */
 	private com.google.api.services.tasks.model.Tasks getTasksList(String tasksId)
 	{
@@ -297,7 +297,7 @@ public class TasksService extends Activity
 
 		try 
 		{
-			//ÇÒ ÀÏ ¸ñ·ÏÀ» °¡Á®¿É´Ï´Ù.
+			//í•  ì¼ ëª©ë¡ì„ ê°€ì ¸ì˜µë‹ˆë‹¤.
 			tasksList = new GetTasksList().execute(tasksId).get();
 		} 
 		catch (InterruptedException e)
@@ -313,9 +313,9 @@ public class TasksService extends Activity
 	}
 	
 	/**
-	 * ³×Æ®¿öÅ© Ã³¸®ÀÌ±â ¶§¹®¿¡ AsyncTask·Î Ã³¸®ÇÏ¿´½À´Ï´Ù.</br>
-	 * ÇÒ ÀÏ ¸ñ·ÏÀ» °¡Á®¿À´Â Å¬·¡½ºÀÔ´Ï´Ù.
-	 * @author ½Åµ¿È¯
+	 * ë„¤íŠ¸ì›Œí¬ ì²˜ë¦¬ì´ê¸° ë•Œë¬¸ì— AsyncTaskë¡œ ì²˜ë¦¬í•˜ì˜€ìŠµë‹ˆë‹¤.</br>
+	 * í•  ì¼ ëª©ë¡ì„ ê°€ì ¸ì˜¤ëŠ” í´ë˜ìŠ¤ì…ë‹ˆë‹¤.
+	 * @author ì‹ ë™í™˜
 	 */
 	private class GetTasksList extends AsyncTask<String, Void, com.google.api.services.tasks.model.Tasks>
 	{
@@ -332,7 +332,7 @@ public class TasksService extends Activity
 			com.google.api.services.tasks.model.Tasks tasksList = null;
 			try
 			{
-				// ÇÒ ÀÏ ¸ñ·ÏÀ» °¡Á®¿É´Ï´Ù.
+				// í•  ì¼ ëª©ë¡ì„ ê°€ì ¸ì˜µë‹ˆë‹¤.
 				tasksList = service.tasks().list(params[0]).execute();
 			} 
 			catch (IOException e)
@@ -345,25 +345,25 @@ public class TasksService extends Activity
 	}
 	
 	/**
-	 * ÇÒ ÀÏÀ» Ãß°¡ÇÏ´Â ÇÔ¼öÀÔ´Ï´Ù.
-	 * @param tasksId ÇÒ ÀÏÀ» Ãß°¡ÇÒ, ÇÒ ÀÏ ¸ñ·ÏÀÇ IDÀÔ´Ï´Ù.
+	 * í•  ì¼ì„ ì¶”ê°€í•˜ëŠ” í•¨ìˆ˜ì…ë‹ˆë‹¤.
+	 * @param tasksId í•  ì¼ì„ ì¶”ê°€í• , í•  ì¼ ëª©ë¡ì˜ IDì…ë‹ˆë‹¤.
 	 */
 	private void addTask(String tasksId)
 	{
-		//»õ·Î Ãß°¡ÇÒ ÇÒ ÀÏÀÔ´Ï´Ù.
+		//ìƒˆë¡œ ì¶”ê°€í•  í•  ì¼ì…ë‹ˆë‹¤.
 		Task task = new Task();
 		task.setTitle("New Task");
 		task.setNotes("Please complete me");
 		task.setDue(new DateTime(System.currentTimeMillis() + 3600000));
 		
-		//ÇÒ ÀÏ ¸ñ·Ï(tasksID)¿¡ ÇÒ ÀÏ(task)À» Ãß°¡ÇÕ´Ï´Ù.
+		//í•  ì¼ ëª©ë¡(tasksID)ì— í•  ì¼(task)ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 		new AddTask().execute(tasksId, task);
 	}
 	
 	/**
-	 * ³×Æ®¿öÅ© Ã³¸®ÀÌ±â ¶§¹®¿¡ AsyncTask·Î Ã³¸®ÇÏ¿´½À´Ï´Ù.</br>
-	 * ÇÒ ÀÏÀ» Ãß°¡ÇÏ´Â Å¬·¡½ºÀÔ´Ï´Ù.
-	 * @author ½Åµ¿È¯
+	 * ë„¤íŠ¸ì›Œí¬ ì²˜ë¦¬ì´ê¸° ë•Œë¬¸ì— AsyncTaskë¡œ ì²˜ë¦¬í•˜ì˜€ìŠµë‹ˆë‹¤.</br>
+	 * í•  ì¼ì„ ì¶”ê°€í•˜ëŠ” í´ë˜ìŠ¤ì…ë‹ˆë‹¤.
+	 * @author ì‹ ë™í™˜
 	 */
 	private class AddTask extends AsyncTask<Object, Void, Void>
 	{
@@ -379,7 +379,7 @@ public class TasksService extends Activity
 			
 			try
 			{
-				//ÇÒ ÀÏÀ» Ãß°¡ÇÕ´Ï´Ù.
+				//í•  ì¼ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 				service.tasks().insert((String) params[0], (Task) params[1]).execute();
 			} 
 			catch (IOException e)
@@ -391,7 +391,7 @@ public class TasksService extends Activity
 		}
 	}
 	
-	//get, set ÇÔ¼öÀÔ´Ï´Ù.
+	//get, set í•¨ìˆ˜ì…ë‹ˆë‹¤.
 	public String get_selectedTaskListID() {return _selectedTaskListID;}
 	
 	public void set_selectedTaskListID(String _selectedTaskListID) {this._selectedTaskListID = _selectedTaskListID;}

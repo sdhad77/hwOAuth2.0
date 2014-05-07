@@ -15,10 +15,10 @@ import Oauth2.Oauth2Info;
 import Oauth2.Oauth2Service;
 
 /**
- * »ç¿ëÀÚ Á¤º¸ ¼­ºñ½º¸¦ ÀÌ¿ëÇÏ±â À§ÇÑ Å¬·¡½º</br>
- * ÀÌ¹ÌÁö ·Î´õ ¶óÀÌºê·¯¸® ÁÖ¼ÒÀÔ´Ï´Ù.</br>
+ * ì‚¬ìš©ì ì •ë³´ ì„œë¹„ìŠ¤ë¥¼ ì´ìš©í•˜ê¸° ìœ„í•œ í´ë˜ìŠ¤</br>
+ * ì´ë¯¸ì§€ ë¡œë” ë¼ì´ë¸ŒëŸ¬ë¦¬ ì£¼ì†Œì…ë‹ˆë‹¤.</br>
  * https://github.com/nostra13/Android-Universal-Image-Loader
- * @author ½Åµ¿È¯
+ * @author ì‹ ë™í™˜
  */
 public class UserInfoService extends Activity
 {
@@ -45,30 +45,30 @@ public class UserInfoService extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.userinfo_activity);
 		
-		//androidUniversalImageLoader ¶óÀÌºê·¯¸®¸¦ »ç¿ëÇÏ±â À§ÇØ ÃÊ±âÈ­ÇØÁÜ.
+		//androidUniversalImageLoader ë¼ì´ë¸ŒëŸ¬ë¦¬ë¥¼ ì‚¬ìš©í•˜ê¸° ìœ„í•´ ì´ˆê¸°í™”í•´ì¤Œ.
 		androidUniversalImageLoaderInit();
 		
-		//»ç¿ëÀÚ Á¤º¸¸¦ ¾ò¾î¿Í¼­ Object ¹è¿­¿¡ ÀúÀåÇÔ.
+		//ì‚¬ìš©ì ì •ë³´ë¥¼ ì–»ì–´ì™€ì„œ Object ë°°ì—´ì— ì €ì¥í•¨.
 		Object[] jsonTempObject = new Object[USERINFO_ARRAY_SIZE];
 	   	JsonParser jsonParser = new JsonParser();
 	    jsonTempObject = jsonParser.parseUserInfo(getUserInfo());
 	  
 		ImageView imgView = (ImageView)findViewById(R.id.imageView);
 		
-		//ÀÌ¹ÌÁö ·Î´õ¸¦ ÀÌ¿ëÇÏ¿© È­¸é¿¡ ÀÌ¹ÌÁö¸¦ ±×·ÁÁÜ.
+		//ì´ë¯¸ì§€ ë¡œë”ë¥¼ ì´ìš©í•˜ì—¬ í™”ë©´ì— ì´ë¯¸ì§€ë¥¼ ê·¸ë ¤ì¤Œ.
 		ImageLoader.getInstance().displayImage(jsonTempObject[USERINFO_ARRAY_INDEX_PICTURE].toString(), imgView);
 			
-		//»ç¿ëÀÚ ÀÌ¸§ Ãâ·Â
+		//ì‚¬ìš©ì ì´ë¦„ ì¶œë ¥
 		TextView textView = (TextView) findViewById(R.id.textView1);
 		textView.setText(jsonTempObject[USERINFO_ARRAY_INDEX_NAME].toString());
 		
-		//»ç¿ëÀÚ ÀÌ¸ŞÀÏ Ãâ·Â
+		//ì‚¬ìš©ì ì´ë©”ì¼ ì¶œë ¥
 		textView = (TextView) findViewById(R.id.textView2);
 		textView.setText(jsonTempObject[USERINFO_ARRAY_INDEX_EMAIL].toString());
 	}
 	
 	/**
-	 * ÀÌ¹ÌÁö ¶óÀÌºê·¯¸®¸¦ ÀÌ¿ëÇÏ±â À§ÇØ ÃÊ±âÈ­ ÇØÁÖ´Â ÇÔ¼ö
+	 * ì´ë¯¸ì§€ ë¼ì´ë¸ŒëŸ¬ë¦¬ë¥¼ ì´ìš©í•˜ê¸° ìœ„í•´ ì´ˆê¸°í™” í•´ì£¼ëŠ” í•¨ìˆ˜
 	 */
 	private void androidUniversalImageLoaderInit()
 	{
@@ -84,8 +84,8 @@ public class UserInfoService extends Activity
 	}
 	
 	/**
-	 * Oauth2ServiceÅ¬·¡½º¸¦ »ç¿ëÇÏ¿© »ç¿ëÀÚ Á¤º¸¸¦ ¾ò¾î ³»´Â ÇÔ¼ö
-	 * @return jsonÀ¸·Î µÈ »ç¿ëÀÚ Á¤º¸
+	 * Oauth2Serviceí´ë˜ìŠ¤ë¥¼ ì‚¬ìš©í•˜ì—¬ ì‚¬ìš©ì ì •ë³´ë¥¼ ì–»ì–´ ë‚´ëŠ” í•¨ìˆ˜
+	 * @return jsonìœ¼ë¡œ ëœ ì‚¬ìš©ì ì •ë³´
 	 */
 	public String getUserInfo()
 	{

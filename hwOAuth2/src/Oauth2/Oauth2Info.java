@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * ÀÎÁõ °úÁ¤¿¡¼­ ÇÊ¿äÇÑ µ¥ÀÌÅÍµéÀ» °ü¸®ÇÏ´Â Å¬·¡½ºÀÔ´Ï´Ù.
- * @author ½Åµ¿È¯
+ * ì¸ì¦ ê³¼ì •ì—ì„œ í•„ìš”í•œ ë°ì´í„°ë“¤ì„ ê´€ë¦¬í•˜ëŠ” í´ë˜ìŠ¤ì…ë‹ˆë‹¤.
+ * @author ì‹ ë™í™˜
  */
 public class Oauth2Info
 {
@@ -14,11 +14,11 @@ public class Oauth2Info
 	final private String API_KEY = "AIzaSyCz-ZbhCQwM5mEJEGWkPI8HhoUwklHoGIc";
 	final private String REDIRECT_URI = "http://localhost";
 	
-	//SCOPE, ENDPOINT´Â ¼­ºñ½º¿¡ µû¶ó °ªÀÌ º¯ÇÏ±â ¶§¹®¿¡ º¯¼ö·Î »ç¿ëÇÏ±â À§ÇØ final ¼±¾ğÀ» ÇÏÁö ¾Ê¾Ò½À´Ï´Ù.
+	//SCOPE, ENDPOINTëŠ” ì„œë¹„ìŠ¤ì— ë”°ë¼ ê°’ì´ ë³€í•˜ê¸° ë•Œë¬¸ì— ë³€ìˆ˜ë¡œ ì‚¬ìš©í•˜ê¸° ìœ„í•´ final ì„ ì–¸ì„ í•˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 	private String ENDPOINT_URL;
 	private List<String> SCOPE;
 	
-	//»ç¿ë°¡´ÉÇÑ ¼­ºñ½º ¸ñ·ÏÀÔ´Ï´Ù. ÇöÀç »ç¿ëÀÚ Á¤º¸, Tasks ¼­ºñ½º ÀÌ¿ë°¡´ÉÇÕ´Ï´Ù.
+	//ì‚¬ìš©ê°€ëŠ¥í•œ ì„œë¹„ìŠ¤ ëª©ë¡ì…ë‹ˆë‹¤. í˜„ì¬ ì‚¬ìš©ì ì •ë³´, Tasks ì„œë¹„ìŠ¤ ì´ìš©ê°€ëŠ¥í•©ë‹ˆë‹¤.
 	public enum Service {NONE, USERINFO, TASKS};
 	private Service selectService = Service.NONE;
 	
@@ -43,7 +43,7 @@ public class Oauth2Info
 		return _instance;
 	}
 
-	//get, set ÇÔ¼öµéÀÔ´Ï´Ù.
+	//get, set í•¨ìˆ˜ë“¤ì…ë‹ˆë‹¤.
 	public Service getSelectService()       {return selectService;}
 	public String getCLIENT_ID()            {return CLIENT_ID;}
 	public String getCLIENT_SECRET()        {return CLIENT_SECRET;}
